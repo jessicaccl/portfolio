@@ -3,21 +3,17 @@ import { describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('App', () => {
-  it('mostra a proposta de valor como título principal', () => {
+  it('oferece o atalho "Pular para o conteúdo" apontando para o conteúdo principal', () => {
     render(<App />)
 
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-        name: 'Transformo problemas de negócio em produto que funciona.',
-      }),
-    ).toBeInTheDocument()
+    const skipLink = screen.getByRole('link', { name: 'Pular para o conteúdo' })
+    expect(skipLink).toHaveAttribute('href', '#conteudo')
+    expect(screen.getByRole('main')).toHaveAttribute('id', 'conteudo')
   })
 
-  it('avisa que o link do GitHub abre em nova aba', () => {
+  it('tem um único título principal (h1)', () => {
     render(<App />)
 
-    const link = screen.getByRole('link', { name: /github\s*\(abre em nova aba\)/i })
-    expect(link).toHaveAttribute('target', '_blank')
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
   })
 })

@@ -1,0 +1,135 @@
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem var(--space-gutter) 4rem;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.3fr 0.7fr;
+    min-height: calc(100svh - 4.5rem);
+    padding-top: 0;
+  }
+}
+
+.hero__role {
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero__role::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+.hero__title {
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.hero__lead {
+  margin: 1.5rem 0 0;
+  max-width: 42ch;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  color: var(--color-text-muted);
+}
+
+.hero__actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero__availability {
+  margin: 1.5rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.hero__pulse {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 0 rgb(201 162 39 / 60%);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 0.6rem rgb(201 162 39 / 0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__pulse {
+    animation: none;
+  }
+}
+
+/* Retrato em arco, com moldura dourada deslocada e pontos decorativos */
+.hero__portrait {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 22rem);
+}
+
+.hero__portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0.875rem -0.875rem -0.875rem 0.875rem;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px 999px 0 0;
+}
+
+.hero__photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+  filter: grayscale(1);
+}
+
+.hero__photo--placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--color-surface);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--color-text);
+}
+
+.hero__dots {
+  position: absolute;
+  left: -1.5rem;
+  bottom: 2rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-image: radial-gradient(var(--color-gold) 1.5px, transparent 1.5px);
+  background-size: 0.75rem 0.75rem;
+}

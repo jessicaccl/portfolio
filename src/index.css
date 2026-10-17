@@ -13,8 +13,8 @@
   --color-accent: #a04a26;
   --color-gold: #c9a227;
 
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
 
   --space-gutter: 1rem;
   --max-width: 72rem;
@@ -65,4 +65,76 @@ a {
 :focus-visible {
   outline: 3px solid var(--color-text);
   outline-offset: 3px;
+}
+
+main:focus {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Botões (links com aparência de botão) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.btn--primary {
+  background: var(--color-gold);
+  color: var(--color-text);
+}
+
+.btn--primary:hover {
+  background: #b8911d;
+}
+
+.btn--secondary {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.btn__icon {
+  font-size: 1.1em;
+  line-height: 1;
 }

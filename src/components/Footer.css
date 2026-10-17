@@ -1,0 +1,20 @@
+.footer {
+  background: var(--color-text);
+  border-top: 1px solid #3a3530;
+  padding: 1.5rem var(--space-gutter);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #d9cfc1;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: var(--color-gold);
+}
+
+.footer :focus-visible {
+  outline-color: var(--color-gold);
+}
