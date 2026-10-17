@@ -1,0 +1,68 @@
+/*
+  Tokens de design.
+  Contraste medido sobre o fundo bege (WCAG 2.1 AA pede 4,5:1 para texto normal):
+  - texto preto ........ 16,9:1
+  - terracota ........... 5,1:1  (o tom #B5562F dava 4,1:1 e foi escurecido)
+  - dourado ............. 2,1:1  -> só decorativo ou como fundo de botão com texto preto (8,7:1)
+*/
+:root {
+  --color-bg: #f3ece2;
+  --color-surface: #ebe1d3;
+  --color-text: #141414;
+  --color-text-muted: #4a443d;
+  --color-accent: #a04a26;
+  --color-gold: #c9a227;
+
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+
+  --space-gutter: 1rem;
+  --max-width: 72rem;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 3px;
+}
