@@ -10,9 +10,9 @@
 Busco uma vaga de **Product Owner / Analista de Produto / PO técnica**, CLT, 100% remota.
 
 O meu perfil é híbrido, e isso é um diferencial difícil de explicar só com o currículo:
-- **10 anos como dona de e-commerce:** mentalidade de dono, comunicação e leitura do cliente.
+- **10 anos como fundadora de uma loja de moda:** mentalidade de dono, comunicação e leitura do cliente.
 - **Formação full stack:** consigo conversar de igual para igual com o time técnico.
-- **Experiência real em produto:** o time em que atuo construiu do zero um ERP e uma plataforma de rastreamento que estão em produção.
+- **Experiência real em produto:** atuo como PO, desenvolvedora com IA e QA na evolução de um ERP em produção (melhorias, correções e novas funcionalidades) e participei da migração da frota para uma plataforma de rastreamento própria.
 
 **Problema:** o currículo em PDF e o GitHub mostram tecnologias e cargos, mas **não mostram como eu penso, decido e garanto qualidade**. Quem avalia não enxerga o meu valor como PO em poucos segundos.
 
