@@ -1,7 +1,7 @@
 // Fonte única dos dados pessoais usados no site e nos testes.
 export const profile = {
   name: 'Jessica Lima',
-  role: 'Product Owner · Produto e Qualidade de Software · Desenvolvedora',
+  role: 'Produto · Qualidade de Software · Desenvolvimento com IA',
   headline: 'Product Owner que une negócio, tecnologia e qualidade.',
   subheadline:
     'PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega.',
