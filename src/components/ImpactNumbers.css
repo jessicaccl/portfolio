@@ -38,3 +38,33 @@
   line-height: 1.45;
   color: var(--color-text-muted);
 }
+
+/* Celular: uma linha por número, legenda ao lado, divisórias douradas */
+@media (max-width: 639px) {
+  .impact__list {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: 0.5rem;
+  }
+
+  .impact__item {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.125rem 0;
+  }
+
+  .impact__item + .impact__item {
+    border-top: 1px solid rgb(201 162 39 / 45%);
+  }
+
+  .impact__value {
+    font-size: 2rem;
+    white-space: nowrap;
+  }
+
+  .impact__label {
+    max-width: none;
+  }
+}
