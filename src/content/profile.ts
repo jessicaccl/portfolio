@@ -5,7 +5,7 @@ export const profile = {
   headline: 'Transformo problemas de negócio em produto que funciona.',
   subheadline:
     'PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega.',
-  availability: 'Disponível para vagas remotas · CLT',
+  availability: 'Aberta a oportunidades como Product Owner',
   links: {
     linkedin: 'https://www.linkedin.com/in/jessica-lima-8ba677275/',
     github: 'https://github.com/jessicaccl',

@@ -10,7 +10,7 @@ export function Contact() {
         Vamos conversar?
       </h2>
       <p className="contact__text">
-        Busco uma vaga remota de Product Owner ou Analista de Produto. Se o seu time precisa de
+        Busco uma oportunidade como Product Owner ou Analista de Produto. Se o seu time precisa de
         alguém que una visão de negócio, critério e qualidade na entrega, me chama.
       </p>
       <div className="contact__actions">
