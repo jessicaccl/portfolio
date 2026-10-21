@@ -1,3 +1,28 @@
+/*
+  Seção escura com cards iluminados.
+  Contraste sobre o card (#1d1b19): dourado 7,1:1 · texto creme 12:1 · contexto #b8ad9e 7,8:1
+*/
+.cases {
+  --card: #1d1b19;
+  --card-text: #d9cfc1;
+  --card-muted: #b8ad9e;
+
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.cases .section__eyebrow {
+  color: var(--color-gold);
+}
+
+.cases .section__intro {
+  color: var(--card-text);
+}
+
+.cases :focus-visible {
+  outline-color: var(--color-gold);
+}
+
 .cases__list {
   margin: 2.5rem 0 0;
   padding: 0;
@@ -13,23 +38,62 @@
 }
 
 .case {
+  position: relative;
   height: 100%;
-  padding: 1.75rem 1.5rem;
-  background: var(--color-surface);
-  border-top: 2px solid var(--color-gold);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: var(--card);
+  border: 1px solid rgb(201 162 39 / 22%);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+/* Holofote que acompanha o cursor (posição vem de --x e --y) */
+.case::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    26rem circle at var(--x, 50%) var(--y, 0%),
+    rgb(201 162 39 / 20%),
+    transparent 45%
+  );
+}
+
+.case:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgb(201 162 39 / 55%),
+    0 20px 60px -10px rgb(201 162 39 / 35%);
+}
+
+.case:hover::before {
+  opacity: 1;
+}
+
+.case__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .case__number {
   margin: 0;
   font-family: var(--font-display);
   font-size: 1.125rem;
-  color: var(--color-accent);
+  color: var(--color-gold);
 }
 
 .case__title {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   font-size: 1.625rem;
 }
 
@@ -39,11 +103,11 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--card-muted);
 }
 
 .case__details {
-  margin: 1.5rem 0 0;
+  margin: 1.25rem 0 0;
   display: grid;
   gap: 1rem;
   flex: 1;
@@ -54,13 +118,14 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-gold);
 }
 
 .case__details dd {
   margin: 0.25rem 0 0;
   font-size: 0.9375rem;
   line-height: 1.55;
+  color: var(--card-text);
 }
 
 .case__tags {
@@ -74,8 +139,90 @@
 
 .case__tags li {
   padding: 0.25rem 0.75rem;
-  border: 1px solid var(--color-text-muted);
+  border: 1px solid rgb(201 162 39 / 45%);
   border-radius: 999px;
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: var(--card-text);
+}
+
+/* Ilustrações */
+.case-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.case-art__bg {
+  fill: #24211e;
+}
+
+.case-art__grid {
+  stroke: #3a352f;
+  stroke-width: 1;
+}
+
+.case-art__panel {
+  fill: #2e2a26;
+}
+
+.case-art__line {
+  fill: #4a443d;
+}
+
+.case-art__route {
+  animation: case-route 3s linear infinite;
+}
+
+.case-art__ping {
+  animation: case-ping 2s ease-out infinite;
+}
+
+.case-art__bubble {
+  animation: case-float 3s ease-in-out infinite;
+}
+
+.case-art__bubble:nth-of-type(2) {
+  animation-delay: 0.5s;
+}
+
+.case-art__bubble:nth-of-type(3) {
+  animation-delay: 1s;
+}
+
+@keyframes case-route {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes case-ping {
+  from {
+    r: 5;
+    opacity: 1;
+  }
+
+  to {
+    r: 18;
+    opacity: 0;
+  }
+}
+
+@keyframes case-float {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case,
+  .case:hover {
+    transform: none;
+  }
+
+  .case-art__route,
+  .case-art__ping,
+  .case-art__bubble {
+    animation: none;
+  }
 }

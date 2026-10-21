@@ -1,3 +1,5 @@
+import type { CaseArtName } from '../components/CaseArt'
+
 // Conteúdo da home. Regras (PRD, seção 9): nada de valor financeiro, percentual de custo,
 // nome de cliente ou da empresa nos cases; sempre "o time" e um bloco "Meu papel".
 
@@ -17,6 +19,7 @@ export type CaseStudy = {
   role: string
   result: string
   tags: string[]
+  art: CaseArtName
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -29,6 +32,7 @@ export const caseStudies: CaseStudy[] = [
     result:
       'Construímos uma plataforma própria para mais de 150 motos, com bloqueio automático de inadimplentes (nunca com a moto em movimento), cerca virtual e custo menor de rastreamento.',
     tags: ['Migração', 'Regras de negócio', 'Operação'],
+    art: 'tracking',
   },
   {
     title: 'ERP de locação',
@@ -39,6 +43,7 @@ export const caseStudies: CaseStudy[] = [
     result:
       'O time evolui continuamente os módulos operacional, gerencial e financeiro, com pagamentos integrados e baixa automática, assinatura digital de contratos e consulta de infrações.',
     tags: ['Discovery', 'Critérios de aceite', 'Testes de regressão'],
+    art: 'erp',
   },
   {
     title: 'Agentes de IA no atendimento',
@@ -49,6 +54,7 @@ export const caseStudies: CaseStudy[] = [
     result:
       'Colocamos em produção agentes de venda, locação, financeiro e pós-venda. O de cobrança negocia com clientes em atraso e aciona a equipe quando há acordo.',
     tags: ['IA aplicada', 'Monitoramento', 'Humano no controle'],
+    art: 'agents',
   },
 ]
 
