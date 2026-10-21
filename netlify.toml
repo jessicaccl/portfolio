@@ -1,0 +1,7 @@
+# Configuração de publicação na Netlify (a Vercel detecta o Vite sozinha).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"

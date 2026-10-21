@@ -13,6 +13,12 @@ describe('Hero (US03, US04, US05)', () => {
     expect(screen.getByText(profile.subheadline)).toBeInTheDocument()
   })
 
+  it('mostra a foto com texto alternativo (US03)', () => {
+    render(<Hero />)
+
+    expect(screen.getByRole('img', { name: 'Foto de Jessica Lima' })).toBeInTheDocument()
+  })
+
   it('baixa o currículo em PDF sem cadastro', () => {
     render(<Hero />)
 

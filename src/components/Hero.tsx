@@ -30,9 +30,12 @@ export function Hero() {
         {profile.photo ? (
           <img
             src={profile.photo.src}
+            srcSet={profile.photo.srcSet}
+            sizes="(min-width: 900px) 22rem, min(100vw - 2rem, 22rem)"
             alt={profile.photo.alt}
             width={480}
             height={600}
+            fetchPriority="high"
             className="hero__photo"
           />
         ) : (

@@ -15,6 +15,9 @@ export const profile = {
     href: '/Jessica_Lima_Product_Owner.pdf',
     fileName: 'Jessica_Lima_Product_Owner.pdf',
   },
-  // Enquanto a foto não chega, o hero mostra um monograma decorativo.
-  photo: null as { src: string; alt: string } | null,
+  photo: {
+    src: '/foto/jessica-lima-960.webp',
+    srcSet: '/foto/jessica-lima-480.webp 480w, /foto/jessica-lima-960.webp 960w',
+    alt: 'Foto de Jessica Lima',
+  } as { src: string; srcSet: string; alt: string } | null,
 }

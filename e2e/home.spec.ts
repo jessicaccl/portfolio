@@ -28,6 +28,15 @@ test.describe('celular de 360 px (US03)', () => {
   })
 })
 
+test('a foto do hero carrega (US03)', async ({ page }) => {
+  await page.goto('/')
+
+  const photo = page.getByRole('img', { name: 'Foto de Jessica Lima' })
+  await expect(photo).toBeVisible()
+  await expect(photo).toHaveJSProperty('complete', true)
+  await expect(photo).not.toHaveJSProperty('naturalWidth', 0)
+})
+
 test('o currículo é baixado com 1 clique a partir do topo (US04)', async ({ page }) => {
   await page.goto('/')
 
