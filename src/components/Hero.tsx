@@ -9,7 +9,7 @@ export function Hero() {
       <div className="hero__text">
         <p className="hero__role">{profile.role}</p>
         <h1 id="hero-title" className="hero__title">
-          Transformo problemas de negócio em <em>produto que funciona.</em>
+          Product Owner que une negócio, tecnologia e <em>qualidade.</em>
         </h1>
         <p className="hero__lead">{profile.subheadline}</p>
 

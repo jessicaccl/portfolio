@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Jessica Lima',
   role: 'Product Owner · Produto e Qualidade de Software · Desenvolvedora',
-  headline: 'Transformo problemas de negócio em produto que funciona.',
+  headline: 'Product Owner que une negócio, tecnologia e qualidade.',
   subheadline:
     'PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega.',
   availability: 'Aberta a oportunidades como Product Owner',

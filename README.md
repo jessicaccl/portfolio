@@ -1,6 +1,6 @@
 # Portfólio · Jessica Lima
 
-> **Transformo problemas de negócio em produto que funciona.**
+> **Product Owner que une negócio, tecnologia e qualidade.**
 > PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega.
 
 Este repositório é o meu portfólio e também um case: ele foi construído como um produto, com PRD, user stories, critérios de aceite e qualidade verificada a cada mudança.

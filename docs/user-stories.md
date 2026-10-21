@@ -57,7 +57,7 @@ Cenário: Hero visível ao abrir o site
   Dado que abro o site em um celular de 360 px ou em um desktop
   Quando a página carrega
   Então vejo, sem rolar a tela, o nome "Jessica Lima"
-  E o título "Transformo problemas de negócio em produto que funciona."
+  E o título "Product Owner que une negócio, tecnologia e qualidade."
   E o subtítulo "PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega."
   E os botões "Baixar currículo" e "LinkedIn"
 

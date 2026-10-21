@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 
-const headline = 'Transformo problemas de negócio em produto que funciona.'
+const headline = 'Product Owner que une negócio, tecnologia e qualidade.'
 
 test('a home abre com o título da página e a proposta de valor', async ({ page }) => {
   await page.goto('/')

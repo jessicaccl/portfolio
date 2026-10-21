@@ -34,7 +34,7 @@ E que o leve a **baixar o currículo** ou **abrir o meu LinkedIn**.
 
 ## 4. Proposta de valor
 
-> **Transformo problemas de negócio em produto que funciona.**
+> **Product Owner que une negócio, tecnologia e qualidade.**
 > PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega.
 
 **Como quero ser percebida:** estratégica, organizada e ousada.
