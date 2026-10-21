@@ -58,48 +58,55 @@ export const caseStudies: CaseStudy[] = [
   },
 ]
 
-export type WorkStep = { title: string; description: string; withAi: boolean }
+export type WorkStep = { title: string; description: string }
 
-export const workSteps: WorkStep[] = [
+export type WorkPhase = { title: string; description: string; steps: WorkStep[] }
+
+// O método em dois blocos: onde a IA acelera e onde a decisão é das pessoas.
+export const workPhases: WorkPhase[] = [
   {
-    title: 'Demanda',
-    description: 'Escuto gestão e operação para entender o problema antes da solução.',
-    withAi: true,
+    title: 'Com apoio de IA',
+    description: 'A IA acelera a análise, a escrita e o código. Eu reviso tudo antes de seguir.',
+    steps: [
+      {
+        title: 'Demanda',
+        description: 'Escuto gestão e operação para entender o problema antes da solução.',
+      },
+      {
+        title: 'História',
+        description: 'Transformo a necessidade em história de usuário, com o valor para quem usa.',
+      },
+      {
+        title: 'Critérios de aceite',
+        description: 'Defino como saberemos que está pronto, incluindo os cenários de erro.',
+      },
+      {
+        title: 'Desenvolvimento',
+        description: 'Prototipo e desenvolvo com o time, sem perder o controle do que entra.',
+      },
+      {
+        title: 'Teste',
+        description: 'Valido contra os critérios e faço testes de regressão no que já funcionava.',
+      },
+    ],
   },
   {
-    title: 'História',
-    description: 'Transformo a necessidade em história de usuário, com o valor para quem usa.',
-    withAi: true,
-  },
-  {
-    title: 'Critérios de aceite',
-    description: 'Defino como saberemos que está pronto, incluindo os cenários de erro.',
-    withAi: true,
-  },
-  {
-    title: 'Desenvolvimento',
-    description: 'Prototipo e desenvolvo com o time, usando IA para acelerar sem perder o controle.',
-    withAi: true,
-  },
-  {
-    title: 'Teste',
-    description: 'Valido contra os critérios e faço testes de regressão no que já funcionava.',
-    withAi: true,
-  },
-  {
-    title: 'Homologação',
-    description: 'Quem vai usar testa antes de ir ao ar. O "funciona" é deles, não só meu.',
-    withAi: false,
-  },
-  {
-    title: 'Produção',
-    description: 'Publico com cuidado e comunico o que mudou para quem usa.',
-    withAi: false,
-  },
-  {
-    title: 'Monitoramento',
-    description: 'Acompanho depois da entrega e trato bugs até a resolução.',
-    withAi: false,
+    title: 'Validação humana',
+    description: 'Aqui quem decide é quem usa: nada vai ao ar sem passar pelas pessoas.',
+    steps: [
+      {
+        title: 'Homologação',
+        description: 'Quem vai usar testa antes de ir ao ar. O "funciona" é deles, não só meu.',
+      },
+      {
+        title: 'Produção',
+        description: 'Publico com cuidado e comunico o que mudou para quem usa.',
+      },
+      {
+        title: 'Monitoramento',
+        description: 'Acompanho depois da entrega e trato bugs até a resolução.',
+      },
+    ],
   },
 ]
 
