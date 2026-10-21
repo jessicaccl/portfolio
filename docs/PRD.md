@@ -76,7 +76,7 @@ E que o leve a **baixar o currículo** ou **abrir o meu LinkedIn**.
 | ID | Requisito |
 |---|---|
 | RF01 | Exibir o hero com nome, proposta de valor, foto P&B e os botões "Baixar currículo" e "LinkedIn". |
-| RF02 | Exibir de 3 a 4 números de impacto (ex.: ~99% de redução no custo de rastreamento). |
+| RF02 | Exibir de 3 a 4 números de impacto (ex.: 173 motos na frota rastreada). Percentuais de custo não são divulgados. |
 | RF03 | Exibir 3 cards de case com título, problema em uma frase, meu papel e resultado. |
 | RF04 | Exibir a seção "Como eu trabalho" com o meu fluxo, da demanda ao monitoramento. |
 | RF05 | Exibir a trajetória: Amare Fashion → Residência Full Stack → FullStore → Maturano. |

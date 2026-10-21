@@ -116,7 +116,7 @@ Cenário: Faixa de números
   Dado que rolei logo abaixo do hero
   Quando a seção de números aparece
   Então vejo de 3 a 4 indicadores, cada um com valor e uma legenda curta
-  E um deles é "~99% de redução no custo de rastreamento por veículo"
+  E um deles é "173 motos rastreadas por uma plataforma própria"
 
 Cenário: Sem número inventado ou confidencial
   Dado um número exibido na faixa
