@@ -138,3 +138,40 @@ main:focus {
   font-size: 1.1em;
   line-height: 1;
 }
+
+/* Seções da home */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem var(--space-gutter);
+}
+
+.section__eyebrow {
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.section__eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+.section__title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.section__intro {
+  margin: 1rem 0 0;
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+}

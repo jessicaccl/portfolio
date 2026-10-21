@@ -1,0 +1,40 @@
+.impact {
+  border-block: 1px solid var(--color-gold);
+  background: var(--color-surface);
+}
+
+.impact__list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem var(--space-gutter);
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .impact__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.impact__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.impact__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.impact__label {
+  max-width: 24ch;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
