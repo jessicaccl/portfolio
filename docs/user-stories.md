@@ -182,11 +182,14 @@ Cenário: Uso de IA
 Cenário: Linha do tempo
   Dado que estou na seção de trajetória
   Então vejo, em ordem cronológica:
-    | Amare Fashion | Fundadora · 10 anos |
+    | Mayfair Multimarcas | Gerente Comercial |
+    | Amare Fashion | Fundadora e CEO |
     | Serratec | Residência Full Stack (790 h) |
+    | FEST | Product Owner e Scrum Master · formação prática |
+    | Fast Motos, Grupo Maturano | Product Owner, Desenvolvedora de Software e Analista de Qualidade |
     | FullStore | Analista de Implantação |
-    | Maturano | Desenvolvedora de Sistemas · atuação em Produto e Qualidade |
   E cada item tem uma frase sobre o que levei dessa etapa
+  E o emprego atual é indicado também para o leitor de tela
 ```
 
 ---

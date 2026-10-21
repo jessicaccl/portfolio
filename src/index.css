@@ -175,3 +175,8 @@ main:focus {
   font-size: 1.0625rem;
   color: var(--color-text-muted);
 }
+
+/* Âncoras não ficam escondidas atrás do topo fixo */
+[id] {
+  scroll-margin-top: 5rem;
+}

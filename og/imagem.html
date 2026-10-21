@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: 'DM Serif Display';
+        src: url('../node_modules/@fontsource/dm-serif-display/files/dm-serif-display-latin-400-normal.woff2')
+          format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Serif Display';
+        font-style: italic;
+        src: url('../node_modules/@fontsource/dm-serif-display/files/dm-serif-display-latin-400-italic.woff2')
+          format('woff2');
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+          format('woff2');
+        font-weight: 100 900;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        background: #f3ece2;
+        color: #141414;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .text {
+        position: absolute;
+        left: 80px;
+        top: 96px;
+        width: 680px;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 0 0 28px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #a04a26;
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 48px;
+        height: 2px;
+        background: #c9a227;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: 'DM Serif Display', serif;
+        font-weight: 400;
+        font-size: 76px;
+        line-height: 1.06;
+        letter-spacing: -0.01em;
+      }
+
+      h1 em {
+        color: #a04a26;
+      }
+
+      .name {
+        position: absolute;
+        left: 80px;
+        bottom: 72px;
+        margin: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        font-family: 'DM Serif Display', serif;
+        font-size: 34px;
+      }
+
+      .name span {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #c9a227;
+      }
+
+      .portrait {
+        position: absolute;
+        right: 90px;
+        top: 70px;
+        width: 300px;
+        height: 490px;
+      }
+
+      .portrait::before {
+        content: '';
+        position: absolute;
+        inset: 16px -16px -16px 16px;
+        border: 2px solid #c9a227;
+        border-radius: 999px 999px 0 0;
+      }
+
+      .portrait img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 999px 999px 0 0;
+      }
+
+      .dots {
+        position: absolute;
+        right: 350px;
+        bottom: 90px;
+        width: 96px;
+        height: 96px;
+        background-image: radial-gradient(#c9a227 2px, transparent 2px);
+        background-size: 16px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text">
+      <p class="eyebrow">Produto · Qualidade · IA</p>
+      <h1>Product Owner que une negócio, tecnologia e <em>qualidade.</em></h1>
+    </div>
+    <p class="name">Jessica Lima<span></span></p>
+    <div class="dots"></div>
+    <div class="portrait"><img src="../public/foto/jessica-lima-960.webp" alt="" /></div>
+  </body>
+</html>

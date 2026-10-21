@@ -1,3 +1,4 @@
+import { Career } from './components/Career'
 import { Cases } from './components/Cases'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
@@ -18,6 +19,7 @@ function App() {
         <ImpactNumbers />
         <Cases />
         <HowIWork />
+        <Career />
         <Contact />
       </main>
       <Footer />

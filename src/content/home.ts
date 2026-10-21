@@ -96,3 +96,53 @@ export const workSteps: WorkStep[] = [
     withAi: false,
   },
 ]
+
+export type CareerStep = {
+  period: string
+  company: string
+  role: string
+  takeaway: string
+  current?: boolean
+}
+
+// Ordem cronológica: a história da transição do varejo para produto (US09).
+export const career: CareerStep[] = [
+  {
+    period: '2012 – 2014',
+    company: 'Mayfair Multimarcas',
+    role: 'Gerente Comercial',
+    takeaway: 'Aprendi a liderar uma equipe de vendas com metas e decisões baseadas em dados.',
+  },
+  {
+    period: '2015 – 2025',
+    company: 'Amare Fashion',
+    role: 'Fundadora e CEO',
+    takeaway:
+      'Dez anos à frente de uma loja de moda: cliente, equipe, operação e números. Daqui vem a minha mentalidade de dono.',
+  },
+  {
+    period: '2025 – 2026',
+    company: 'Serratec',
+    role: 'Residência Full Stack (790 h)',
+    takeaway: 'A base técnica para conversar de igual para igual com o time de desenvolvimento.',
+  },
+  {
+    period: 'Mar – Mai 2026',
+    company: 'FEST, Fábrica Escola de Software e Teste',
+    role: 'Product Owner e Scrum Master · formação prática',
+    takeaway: 'Prática de backlog, refinamento e cerimônias ágeis com equipes reais.',
+  },
+  {
+    period: 'Mai 2026 – atual',
+    company: 'Fast Motos, Grupo Maturano',
+    role: 'Product Owner, Desenvolvedora de Software e Analista de Qualidade',
+    takeaway: 'Onde junto produto, desenvolvimento com IA e qualidade no mesmo dia a dia.',
+    current: true,
+  },
+  {
+    period: 'Ago – Set 2026',
+    company: 'FullStore',
+    role: 'Analista de Implantação',
+    takeaway: 'Vi o produto pelo lado do cliente: implantação, treinamento e o que trava a adoção.',
+  },
+]

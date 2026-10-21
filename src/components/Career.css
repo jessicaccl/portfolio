@@ -1,0 +1,58 @@
+.timeline {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.timeline__item {
+  position: relative;
+  padding: 0 0 2rem 2rem;
+  border-left: 1px solid var(--color-gold);
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* Ponto da linha do tempo */
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  left: -0.375rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-gold);
+}
+
+.timeline__item--current::before {
+  background: var(--color-gold);
+}
+
+.timeline__period {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.timeline__company {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+}
+
+.timeline__role {
+  margin: 0.125rem 0 0;
+  font-weight: 600;
+}
+
+.timeline__takeaway {
+  margin: 0.5rem 0 0;
+  max-width: 54ch;
+  color: var(--color-text-muted);
+}

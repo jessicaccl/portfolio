@@ -16,4 +16,15 @@ describe('App', () => {
 
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
   })
+
+  it('todo link interno do menu aponta para uma seção que existe', () => {
+    const { container } = render(<App />)
+
+    const nav = screen.getByRole('navigation', { name: 'Principal' })
+    const anchors = [...nav.querySelectorAll('a[href^="#"]')].map((a) => a.getAttribute('href'))
+    expect(anchors.length).toBeGreaterThan(0)
+    for (const href of anchors) {
+      expect(container.querySelector(href!)).not.toBeNull()
+    }
+  })
 })
