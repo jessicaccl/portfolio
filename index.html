@@ -5,6 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F3ECE2" />
+    <script>
+      // Aplica o tema antes de pintar a página: escolha salva ou a preferência do sistema.
+      try {
+        var tema = localStorage.getItem('tema')
+        if (tema !== 'claro' && tema !== 'escuro') {
+          tema = matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro'
+        }
+        document.documentElement.dataset.theme = tema === 'escuro' ? 'dark' : 'light'
+        if (tema === 'escuro') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#171513')
+        }
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
     <title>Jessica Lima · PO técnica</title>
     <meta
       name="description"

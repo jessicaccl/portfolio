@@ -3,14 +3,14 @@ import { describe, expect, it } from 'vitest'
 import { ImpactNumbers } from './ImpactNumbers'
 
 describe('Números de impacto (US06)', () => {
-  it('mostra de 3 a 4 indicadores, cada um com valor e legenda', () => {
+  it('mostra de 3 a 4 indicadores, cada um com valor, título e contexto', () => {
     render(<ImpactNumbers />)
 
     const items = within(screen.getByRole('list')).getAllByRole('listitem')
     expect(items.length).toBeGreaterThanOrEqual(3)
     expect(items.length).toBeLessThanOrEqual(4)
     for (const item of items) {
-      expect(item.children).toHaveLength(2)
+      expect(item.children).toHaveLength(3)
       expect(item).not.toHaveTextContent(/^\s*$/)
     }
   })

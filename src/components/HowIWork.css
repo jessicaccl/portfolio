@@ -30,7 +30,7 @@
 }
 
 .phase--ai .phase__icon svg {
-  fill: var(--color-text);
+  fill: var(--color-on-gold);
 }
 
 .phase--human .phase__icon {
@@ -90,7 +90,7 @@
 .phase--ai .flow__number {
   background: var(--color-gold);
   border-color: var(--color-gold);
-  color: var(--color-text);
+  color: var(--color-on-gold);
 }
 
 .flow__title {

@@ -1,4 +1,4 @@
-import type { PointerEvent } from 'react'
+import { useSyncExternalStore, type PointerEvent } from 'react'
 import { caseStudies } from '../content/home'
 import { CaseArt } from './CaseArt'
 import './Cases.css'
@@ -11,7 +11,26 @@ function followPointer(event: PointerEvent<HTMLElement>) {
   card.style.setProperty('--y', `${event.clientY - rect.top}px`)
 }
 
+// No celular os cases viram um carrossel; só então a lista precisa receber foco pelo teclado.
+const carouselQuery = '(max-width: 899px)'
+
+function subscribe(onChange: () => void) {
+  const media = window.matchMedia?.(carouselQuery)
+  media?.addEventListener('change', onChange)
+  return () => media?.removeEventListener('change', onChange)
+}
+
+function useIsCarousel() {
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia?.(carouselQuery).matches ?? false,
+    () => false,
+  )
+}
+
 export function Cases() {
+  const isCarousel = useIsCarousel()
+
   return (
     <section id="cases" className="cases" aria-labelledby="cases-title">
       <div className="section">
@@ -24,7 +43,15 @@ export function Cases() {
           confidencialidade.
         </p>
 
-        <ol className="cases__list">
+        <p className="cases__hint" aria-hidden="true">
+          Deslize para ver os {caseStudies.length} cases <span>→</span>
+        </p>
+
+        <ol
+          className="cases__list"
+          aria-label={isCarousel ? 'Cases, deslize para o lado' : undefined}
+          tabIndex={isCarousel ? 0 : undefined}
+        >
           {caseStudies.map((item, index) => (
             <li key={item.title}>
               <article className="case" aria-labelledby={`case-${index}`} onPointerMove={followPointer}>

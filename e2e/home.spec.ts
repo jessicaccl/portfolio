@@ -98,6 +98,26 @@ test.describe('menu no desktop (US10)', () => {
   })
 })
 
+test.describe('cases no celular', () => {
+  test.use({ viewport: { width: 360, height: 740 } })
+
+  test('viram um carrossel lateral que dá para percorrer até o último case', async ({ page }) => {
+    await page.goto('/')
+    const carousel = page.getByRole('list', { name: 'Cases, deslize para o lado' })
+    await carousel.scrollIntoViewIfNeeded()
+
+    const first = page.getByRole('heading', { name: 'Plataforma de rastreamento' })
+    const last = page.getByRole('heading', { name: 'Agentes de IA no atendimento' })
+    await expect(first).toBeInViewport()
+    await expect(last).not.toBeInViewport()
+
+    await carousel.evaluate((list) => list.scrollTo({ left: list.scrollWidth }))
+    await expect(last).toBeInViewport()
+    const overflow = await page.evaluate("document.documentElement.scrollWidth > window.innerWidth")
+    expect(overflow).toBe(false)
+  })
+})
+
 test('a página tem prévia de compartilhamento com imagem (US11)', async ({ page, request }) => {
   await page.goto('/')
 
@@ -119,4 +139,27 @@ test('a home não tem violações de acessibilidade (WCAG 2.1 AA)', async ({ pag
     .analyze()
 
   expect(results.violations).toEqual([])
+})
+
+test.describe('modo escuro', () => {
+  test.use({ colorScheme: 'dark' })
+
+  test('segue a preferência do sistema e não tem violações de acessibilidade', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze()
+    expect(results.violations).toEqual([])
+  })
+
+  test('a escolha manual vale mais que o sistema e continua depois de recarregar', async ({ page }) => {
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Ativar modo claro' }).click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+
+    await page.reload()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  })
 })

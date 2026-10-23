@@ -7,8 +7,8 @@
   --card-text: #d9cfc1;
   --card-muted: #b8ad9e;
 
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-ink);
+  color: #f3ece2;
 }
 
 .cases .section__eyebrow {
@@ -224,5 +224,67 @@
   .case-art__ping,
   .case-art__bubble {
     animation: none;
+  }
+}
+
+/* Celular e tablet: carrossel com deslize lateral e a ponta do próximo card visível */
+.cases__hint {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .cases__hint {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gold);
+  }
+
+  .cases__list {
+    margin-top: 1rem;
+    margin-inline: calc(-1 * var(--space-gutter));
+    padding: 0.5rem var(--space-gutter) 1rem;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--space-gutter);
+    scrollbar-width: none;
+  }
+
+  .cases__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cases__list > li {
+    flex: 0 0 86%;
+    max-width: 24rem;
+    scroll-snap-align: start;
+  }
+
+  .case-art {
+    aspect-ratio: 16 / 8;
+  }
+
+  .case__body {
+    padding: 1.25rem;
+  }
+
+  .case__details {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .cases__hint span {
+    animation: cases-nudge 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes cases-nudge {
+  50% {
+    transform: translateX(4px);
   }
 }

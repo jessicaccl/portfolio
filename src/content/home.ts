@@ -3,13 +3,29 @@ import type { CaseArtName } from '../components/CaseArt'
 // Conteúdo da home. Regras (PRD, seção 9): nada de valor financeiro, percentual de custo,
 // nome de cliente ou da empresa nos cases; sempre "o time" e um bloco "Meu papel".
 
-export type ImpactStat = { value: string; label: string }
+export type ImpactStat = { value: string; label: string; detail: string }
 
 export const impactStats: ImpactStat[] = [
-  { value: '+150', label: 'motos monitoradas por uma plataforma de rastreamento própria' },
-  { value: '4', label: 'agentes de IA em produção, monitorados diariamente' },
-  { value: '3', label: 'papéis no mesmo produto: PO, desenvolvedora e QA' },
-  { value: '10 anos', label: 'à frente de um negócio próprio, com mentalidade de dono' },
+  {
+    value: '+150',
+    label: 'motos rastreadas',
+    detail: 'por uma plataforma própria, com bloqueio seguro e cerca virtual',
+  },
+  {
+    value: '4',
+    label: 'agentes de IA em produção',
+    detail: 'em venda, locação, financeiro e pós-venda, monitorados todo dia',
+  },
+  {
+    value: '3 em 1',
+    label: 'PO, dev e QA',
+    detail: 'no mesmo produto, da demanda ao monitoramento',
+  },
+  {
+    value: '10 anos',
+    label: 'à frente de um negócio',
+    detail: 'uma loja de moda própria, com mentalidade de dono',
+  },
 ]
 
 export type CaseStudy = {
@@ -157,5 +173,61 @@ export const career: CareerStep[] = [
     company: 'FullStore',
     role: 'Analista de Implantação',
     takeaway: 'Vi o produto pelo lado do cliente: implantação, treinamento e o que trava a adoção.',
+  },
+]
+
+export const about: string[] = [
+  'No dia a dia, transito entre produto, desenvolvimento e qualidade. Levanto as demandas com gestão e operação, transformo em histórias com critérios de aceite claros, desenvolvo com IA junto com o time e só considero pronto o que foi testado e homologado por quem vai usar.',
+  'Antes da tecnologia, passei dez anos à frente da minha própria loja de moda. Foi ali que aprendi a ouvir o cliente, cuidar dos números e decidir com mentalidade de dono, e é isso que levo para cada produto.',
+  'Hoje sigo investindo no próximo passo: pós-graduações em Gestão de Projetos em TI e em Inteligência Artificial Generativa, e mentoria com foco na certificação PSPO.',
+]
+
+export type SkillGroup = {
+  title: string
+  icon: 'product' | 'quality' | 'ai' | 'agile'
+  skills: string[]
+}
+
+export const skillGroups: SkillGroup[] = [
+  {
+    title: 'Produto e requisitos',
+    icon: 'product',
+    skills: [
+      'Discovery',
+      'Requisitos funcionais e não funcionais',
+      'Backlog e priorização',
+      'Histórias de usuário',
+      'Critérios de aceite',
+      'Documentação funcional',
+    ],
+  },
+  {
+    title: 'Qualidade de software',
+    icon: 'quality',
+    skills: [
+      'Testes funcionais',
+      'Testes de regressão',
+      'Homologação com o usuário',
+      'Gestão de bugs',
+      'Monitoramento em produção',
+    ],
+  },
+  {
+    title: 'Desenvolvimento com IA',
+    icon: 'ai',
+    skills: [
+      'Lovable',
+      'Claude Code',
+      'Supabase',
+      'React',
+      'TypeScript',
+      'APIs REST',
+      'Agentes de IA',
+    ],
+  },
+  {
+    title: 'Agilidade e negócio',
+    icon: 'agile',
+    skills: ['Scrum', 'Kanban', 'ClickUp', 'Azure DevOps', 'Jira', 'Indicadores e ROI'],
   },
 ]

@@ -1,0 +1,32 @@
+.about {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .about {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+.about__text {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 62ch;
+}
+
+.about__text p {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* O primeiro parágrafo resume o que eu faço: ganha mais peso */
+.about__text p:first-child {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}

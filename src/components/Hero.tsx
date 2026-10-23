@@ -19,11 +19,6 @@ export function Hero() {
             LinkedIn
           </ExternalLink>
         </div>
-
-        <p className="hero__availability">
-          <span aria-hidden="true" className="hero__pulse" />
-          {profile.availability}
-        </p>
       </div>
 
       <div className="hero__portrait">

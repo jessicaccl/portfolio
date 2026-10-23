@@ -1,3 +1,4 @@
+import { About } from './components/About'
 import { Career } from './components/Career'
 import { Cases } from './components/Cases'
 import { Contact } from './components/Contact'
@@ -6,6 +7,7 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { HowIWork } from './components/HowIWork'
 import { ImpactNumbers } from './components/ImpactNumbers'
+import { Skills } from './components/Skills'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <main id="conteudo" tabIndex={-1}>
         <Hero />
         <ImpactNumbers />
+        <About />
+        <Skills />
         <Cases />
         <HowIWork />
         <Career />

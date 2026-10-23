@@ -1,6 +1,6 @@
 .contact {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-ink);
+  color: #f3ece2;
   padding: 5rem var(--space-gutter);
   text-align: center;
 }
@@ -24,13 +24,13 @@
 }
 
 .contact .btn--secondary {
-  color: var(--color-bg);
-  border-color: var(--color-bg);
+  color: #f3ece2;
+  border-color: #f3ece2;
 }
 
 .contact .btn--secondary:hover {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: #f3ece2;
+  color: #141414;
 }
 
 .contact :focus-visible {

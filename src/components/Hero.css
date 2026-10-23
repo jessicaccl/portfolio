@@ -59,36 +59,6 @@
   gap: 0.75rem;
 }
 
-.hero__availability {
-  margin: 1.5rem 0 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.hero__pulse {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 0 0 rgb(201 162 39 / 60%);
-  animation: pulse 2.4s ease-out infinite;
-}
-
-@keyframes pulse {
-  to {
-    box-shadow: 0 0 0 0.6rem rgb(201 162 39 / 0%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__pulse {
-    animation: none;
-  }
-}
-
 /* Retrato em arco, com moldura dourada deslocada e pontos decorativos */
 .hero__portrait {
   position: relative;

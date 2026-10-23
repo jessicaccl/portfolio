@@ -1,16 +1,16 @@
 .impact {
-  border-block: 1px solid var(--color-gold);
+  border-block: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent);
   background: var(--color-surface);
 }
 
+/* Grade 2x2 no celular e 4 colunas no desktop, separadas por linhas finas */
 .impact__list {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2.5rem var(--space-gutter);
+  padding: 0 var(--space-gutter);
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem 1.5rem;
 }
 
 @media (min-width: 900px) {
@@ -22,49 +22,61 @@
 .impact__item {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  padding: 2rem 1.25rem 2rem 0;
 }
 
-.impact__value {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3rem);
-  line-height: 1;
-  color: var(--color-accent);
+.impact__item:nth-child(even) {
+  padding-left: 1.25rem;
+  border-left: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
 }
 
-.impact__label {
-  max-width: 24ch;
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  color: var(--color-text-muted);
+.impact__item:nth-child(n + 3) {
+  border-top: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
 }
 
-/* Celular: uma linha por número, legenda ao lado, divisórias douradas */
-@media (max-width: 639px) {
-  .impact__list {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding-block: 0.5rem;
+@media (min-width: 900px) {
+  .impact__item,
+  .impact__item:nth-child(even) {
+    padding: 2.5rem 1.5rem;
   }
 
-  .impact__item {
-    display: grid;
-    grid-template-columns: 7.5rem 1fr;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.125rem 0;
+  .impact__item:first-child {
+    padding-left: 0;
   }
 
   .impact__item + .impact__item {
-    border-top: 1px solid rgb(201 162 39 / 45%);
+    border-left: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
   }
 
-  .impact__value {
-    font-size: 2rem;
-    white-space: nowrap;
+  .impact__item:nth-child(n + 3) {
+    border-top: 0;
   }
+}
 
-  .impact__label {
-    max-width: none;
-  }
+/* Número em degradê; as duas pontas passam no contraste de texto grande (3:1) */
+.impact__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-accent);
+  background: var(--gradient-impact);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.impact__label {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.impact__detail {
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
 }

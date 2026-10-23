@@ -4,6 +4,8 @@
   - texto preto ........ 16,9:1
   - terracota ........... 5,1:1  (o tom #B5562F dava 4,1:1 e foi escurecido)
   - dourado ............. 2,1:1  -> só decorativo ou como fundo de botão com texto preto (8,7:1)
+  Modo escuro, sobre #171513: creme 15,4:1 · texto secundário 9,2:1 · terracota clara 6,9:1 · dourado 7,6:1
+  O tema vem de data-theme no <html>, definido antes do React carregar (index.html).
 */
 :root {
   --color-bg: #f3ece2;
@@ -12,6 +14,11 @@
   --color-text-muted: #4a443d;
   --color-accent: #a04a26;
   --color-gold: #c9a227;
+  /* Fundo das faixas escuras (cases, contato, rodapé) e texto sobre o dourado */
+  --color-ink: #141414;
+  --color-on-gold: #141414;
+  /* Números de impacto: degradê com contraste de texto grande (3:1) nas duas pontas */
+  --gradient-impact: linear-gradient(120deg, #a04a26, #8a6d12);
 
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
@@ -20,6 +27,18 @@
   --max-width: 72rem;
 
   color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #171513;
+  --color-surface: #221f1c;
+  --color-text: #f3ece2;
+  --color-text-muted: #c2b8aa;
+  --color-accent: #e08a5f;
+  --color-ink: #0d0c0b;
+  --gradient-impact: linear-gradient(120deg, #c9a227, #e08a5f);
+
+  color-scheme: dark;
 }
 
 *,
@@ -117,7 +136,7 @@ main:focus {
 
 .btn--primary {
   background: var(--color-gold);
-  color: var(--color-text);
+  color: var(--color-on-gold);
 }
 
 .btn--primary:hover {

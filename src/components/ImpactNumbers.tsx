@@ -12,6 +12,7 @@ export function ImpactNumbers() {
           <li key={stat.label} className="impact__item">
             <span className="impact__value">{stat.value}</span>
             <span className="impact__label">{stat.label}</span>
+            <span className="impact__detail">{stat.detail}</span>
           </li>
         ))}
       </ul>
