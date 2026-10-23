@@ -1,6 +1,7 @@
+/* Claro no modo claro e escuro no modo escuro, como o resto da página */
 .contact {
-  background: var(--color-ink);
-  color: #f3ece2;
+  background: var(--color-surface);
+  border-top: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
   padding: 5rem var(--space-gutter);
   text-align: center;
 }
@@ -11,8 +12,8 @@
 
 .contact__text {
   margin: 1.25rem auto 0;
-  max-width: 46ch;
-  color: #d9cfc1;
+  max-width: 50ch;
+  color: var(--color-text-muted);
 }
 
 .contact__actions {
@@ -21,18 +22,4 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-}
-
-.contact .btn--secondary {
-  color: #f3ece2;
-  border-color: #f3ece2;
-}
-
-.contact .btn--secondary:hover {
-  background: #f3ece2;
-  color: #141414;
-}
-
-.contact :focus-visible {
-  outline-color: var(--color-gold);
 }

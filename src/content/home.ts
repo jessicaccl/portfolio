@@ -184,10 +184,12 @@ export const about: string[] = [
 
 export type SkillGroup = {
   title: string
-  icon: 'product' | 'quality' | 'ai' | 'agile'
+  icon: 'product' | 'quality' | 'front' | 'back' | 'ai' | 'agile'
   skills: string[]
+  evidence: string
 }
 
+// Competências comprovadas no trabalho e nos repositórios públicos (github.com/jessicaccl).
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Produto e requisitos',
@@ -197,37 +199,71 @@ export const skillGroups: SkillGroup[] = [
       'Requisitos funcionais e não funcionais',
       'Backlog e priorização',
       'Histórias de usuário',
-      'Critérios de aceite',
-      'Documentação funcional',
+      'Critérios de aceite em Gherkin',
+      'PRD e documentação',
     ],
+    evidence: 'ERP da locadora de motos e o PRD deste portfólio',
   },
   {
-    title: 'Qualidade de software',
+    title: 'Qualidade e testes',
     icon: 'quality',
     skills: [
-      'Testes funcionais',
-      'Testes de regressão',
+      'Testes funcionais e de regressão',
       'Homologação com o usuário',
-      'Gestão de bugs',
-      'Monitoramento em produção',
+      'Vitest e Testing Library',
+      'Playwright',
+      'xUnit e JUnit',
+      'Acessibilidade (WCAG, axe)',
+      'CI com GitHub Actions',
     ],
+    evidence: 'Portfólio, Assina+ e CRM de Vendas',
   },
   {
-    title: 'Desenvolvimento com IA',
-    icon: 'ai',
+    title: 'Front-end',
+    icon: 'front',
     skills: [
-      'Lovable',
-      'Claude Code',
-      'Supabase',
       'React',
       'TypeScript',
-      'APIs REST',
-      'Agentes de IA',
+      'Vite',
+      'React Native com Expo',
+      'React Query',
+      'React Hook Form e Zod',
+      'Tailwind CSS',
     ],
+    evidence: 'CRM de Vendas, Assina+ e sites para clientes',
+  },
+  {
+    title: 'Back-end e APIs',
+    icon: 'back',
+    skills: [
+      'Java e Spring Boot',
+      'C# e .NET',
+      'APIs REST e OpenAPI',
+      'PostgreSQL',
+      'JWT e Spring Security',
+      'RabbitMQ',
+      'Docker',
+    ],
+    evidence: 'CRM de Vendas e Assina+',
+  },
+  {
+    title: 'IA e automação',
+    icon: 'ai',
+    skills: [
+      'Claude Code',
+      'Lovable',
+      'Supabase',
+      'Agentes de IA no WhatsApp',
+      'Python',
+      'Automação com GitHub Actions',
+      'VPS',
+    ],
+    evidence: 'Agentes da locadora e um agente que monitora vagas e avisa no Telegram',
   },
   {
     title: 'Agilidade e negócio',
     icon: 'agile',
-    skills: ['Scrum', 'Kanban', 'ClickUp', 'Azure DevOps', 'Jira', 'Indicadores e ROI'],
+    skills: ['Scrum', 'Kanban', 'ClickUp', 'Azure DevOps', 'Jira', 'KPIs e ROI'],
+    evidence: 'Locadora de motos, formação na FEST e 10 anos de negócio próprio',
   },
 ]

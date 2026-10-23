@@ -15,6 +15,18 @@ const icons: Record<SkillGroup['icon'], ReactNode> = {
       <path d="M8.5 12l2.5 2.5 4.5-5" />
     </>
   ),
+  front: (
+    <>
+      <rect x="3" y="4" width="18" height="14" rx="2.5" />
+      <path d="M3 8h18M9.5 12l-2 2 2 2M14.5 12l2 2-2 2" />
+    </>
+  ),
+  back: (
+    <>
+      <ellipse cx="12" cy="6" rx="7" ry="2.5" />
+      <path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6" />
+    </>
+  ),
   ai: (
     <>
       <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
@@ -52,6 +64,9 @@ export function Skills() {
                 <li key={skill}>{skill}</li>
               ))}
             </ul>
+            <p className="skills__evidence">
+              <span>Na prática:</span> {group.evidence}
+            </p>
           </li>
         ))}
       </ul>

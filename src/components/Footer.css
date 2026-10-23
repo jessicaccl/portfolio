@@ -1,10 +1,10 @@
 .footer {
-  background: var(--color-ink);
-  border-top: 1px solid #3a3530;
+  background: var(--color-bg);
+  border-top: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
   padding: 1.5rem var(--space-gutter);
   text-align: center;
   font-size: 0.8125rem;
-  color: #d9cfc1;
+  color: var(--color-text-muted);
 }
 
 .footer p {
@@ -12,9 +12,5 @@
 }
 
 .footer a {
-  color: var(--color-gold);
-}
-
-.footer :focus-visible {
-  outline-color: var(--color-gold);
+  color: var(--color-accent);
 }

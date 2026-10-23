@@ -1,18 +1,39 @@
 /*
-  Seção escura com cards iluminados.
-  Contraste sobre o card (#1d1b19): dourado 7,1:1 · texto creme 12:1 · contexto #b8ad9e 7,8:1
+  Cards iluminados, claros no modo claro e escuros no modo escuro.
+  Modo claro, sobre o card #fbf7f1: terracota 5,9:1 · texto secundário 9:1
+  Modo escuro, sobre o card #1d1b19: dourado 7,1:1 · texto creme 12:1 · contexto #b8ad9e 7,8:1
 */
 .cases {
+  --cases-bg: var(--color-surface);
+  --card: #fbf7f1;
+  --card-border: rgb(201 162 39 / 45%);
+  --card-text: var(--color-text-muted);
+  --card-muted: var(--color-text-muted);
+  --card-label: var(--color-accent);
+  --art-bg: #efe5d6;
+  --art-grid: #e0d3bf;
+  --art-panel: #fbf7f1;
+  --art-line: #d9cfc1;
+
+  background: var(--cases-bg);
+  color: var(--color-text);
+}
+
+:root[data-theme='dark'] .cases {
+  --cases-bg: var(--color-ink);
   --card: #1d1b19;
+  --card-border: rgb(201 162 39 / 22%);
   --card-text: #d9cfc1;
   --card-muted: #b8ad9e;
-
-  background: var(--color-ink);
-  color: #f3ece2;
+  --card-label: var(--color-gold);
+  --art-bg: #24211e;
+  --art-grid: #3a352f;
+  --art-panel: #2e2a26;
+  --art-line: #4a443d;
 }
 
 .cases .section__eyebrow {
-  color: var(--color-gold);
+  color: var(--card-label);
 }
 
 .cases .section__intro {
@@ -20,7 +41,7 @@
 }
 
 .cases :focus-visible {
-  outline-color: var(--color-gold);
+  outline-color: var(--card-label);
 }
 
 .cases__list {
@@ -45,7 +66,7 @@
   overflow: hidden;
   border-radius: 1.25rem;
   background: var(--card);
-  border: 1px solid rgb(201 162 39 / 22%);
+  border: 1px solid var(--card-border);
   transition:
     transform 0.3s,
     box-shadow 0.3s;
@@ -89,7 +110,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: 1.125rem;
-  color: var(--color-gold);
+  color: var(--card-label);
 }
 
 .case__title {
@@ -118,7 +139,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--card-label);
 }
 
 .case__details dd {
@@ -154,20 +175,20 @@
 }
 
 .case-art__bg {
-  fill: #24211e;
+  fill: var(--art-bg);
 }
 
 .case-art__grid {
-  stroke: #3a352f;
+  stroke: var(--art-grid);
   stroke-width: 1;
 }
 
 .case-art__panel {
-  fill: #2e2a26;
+  fill: var(--art-panel);
 }
 
 .case-art__line {
-  fill: #4a443d;
+  fill: var(--art-line);
 }
 
 .case-art__route {
@@ -239,7 +260,7 @@
     margin: 1.5rem 0 0;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-gold);
+    color: var(--card-label);
   }
 
   .cases__list {

@@ -10,8 +10,8 @@ export function Contact() {
         Vamos conversar?
       </h2>
       <p className="contact__text">
-        Busco uma oportunidade como Product Owner ou Analista de Produto. Se o seu time precisa de
-        alguém que una visão de negócio, critério e qualidade na entrega, me chama.
+        Gosto de trocar ideias sobre produto, qualidade de software e IA aplicada a negócios. Se
+        você tem um projeto, um desafio no seu time ou quer só trocar experiências, me chama.
       </p>
       <div className="contact__actions">
         <CvLink className="btn btn--primary" />
