@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../content/profile'
+import { track } from '../lib/analytics'
 import { ExternalLink } from './ExternalLink'
 import { ThemeToggle } from './ThemeToggle'
 import './Header.css'
@@ -63,10 +64,20 @@ export function Header() {
               </ul>
               <ul className="nav__external">
                 <li>
-                  <ExternalLink href={profile.links.linkedin}>LinkedIn</ExternalLink>
+                  <ExternalLink
+                    href={profile.links.linkedin}
+                    onClick={() => track('linkedin_click', { local: 'menu' })}
+                  >
+                    LinkedIn
+                  </ExternalLink>
                 </li>
                 <li>
-                  <ExternalLink href={profile.links.github}>GitHub</ExternalLink>
+                  <ExternalLink
+                    href={profile.links.github}
+                    onClick={() => track('github_click', { local: 'menu' })}
+                  >
+                    GitHub
+                  </ExternalLink>
                 </li>
               </ul>
             </div>

@@ -8,8 +8,20 @@ function currentTheme(): Theme {
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
 }
 
+// Desliga as transições durante a troca, senão todas as cores animam juntas e a tela "borra".
+function withoutTransitions(change: () => void) {
+  const style = document.createElement('style')
+  style.textContent = '*, *::before, *::after { transition: none !important; }'
+  document.head.appendChild(style)
+  change()
+  void getComputedStyle(document.body).color
+  requestAnimationFrame(() => requestAnimationFrame(() => style.remove()))
+}
+
 function applyTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme
+  withoutTransitions(() => {
+    document.documentElement.dataset.theme = theme
+  })
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColors[theme])
   try {
     localStorage.setItem('tema', theme === 'dark' ? 'escuro' : 'claro')

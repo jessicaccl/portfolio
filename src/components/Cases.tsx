@@ -1,6 +1,7 @@
 import { useSyncExternalStore, type PointerEvent } from 'react'
 import { caseStudies } from '../content/home'
 import { CaseArt } from './CaseArt'
+import { track } from '../lib/analytics'
 import { ExternalLink } from './ExternalLink'
 import './Cases.css'
 
@@ -56,7 +57,21 @@ export function Cases() {
           {caseStudies.map((item, index) => (
             <li key={item.title}>
               <article className="case" aria-labelledby={`case-${index}`} onPointerMove={followPointer}>
-                <CaseArt name={item.art} />
+                {item.image ? (
+                  <img
+                    className="case__image"
+                    src={`/cases/${item.image.name}-640.webp`}
+                    srcSet={`/cases/${item.image.name}-640.webp 640w, /cases/${item.image.name}-1280.webp 1280w`}
+                    sizes="(min-width: 900px) 24rem, 86vw"
+                    alt={item.image.alt}
+                    width={640}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <CaseArt name={item.art} />
+                )}
 
                 <div className="case__body">
                   <p className="case__number" aria-hidden="true">
@@ -91,8 +106,17 @@ export function Cases() {
                   {item.links && (
                     <p className="case__links">
                       {item.links.map((link) => (
-                        <ExternalLink key={link.href} href={link.href} className="case__link">
-                          {link.label} <span aria-hidden="true">↗</span>
+                        <ExternalLink
+                          key={link.href}
+                          href={link.href}
+                          className="case__link"
+                          onClick={() =>
+                            track('case_link_click', { case: item.title, link: link.label })
+                          }
+                        >
+                          {link.label}
+                          <span className="visually-hidden"> do {item.title}</span>{' '}
+                          <span aria-hidden="true">↗</span>
                         </ExternalLink>
                       ))}
                     </p>

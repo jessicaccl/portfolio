@@ -68,8 +68,8 @@
   background: var(--card);
   border: 1px solid var(--card-border);
   transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
 }
 
 /* Holofote que acompanha o cursor (posição vem de --x e --y) */
@@ -80,7 +80,7 @@
   z-index: 1;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s var(--ease-out);
   background: radial-gradient(
     26rem circle at var(--x, 50%) var(--y, 0%),
     rgb(201 162 39 / 20%),
@@ -88,15 +88,18 @@
   );
 }
 
-.case:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgb(201 162 39 / 55%),
-    0 20px 60px -10px rgb(201 162 39 / 35%);
-}
+/* Brilho e elevação só em dispositivos com mouse: no toque o hover ficaria preso */
+@media (hover: hover) {
+  .case:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 0 1px rgb(201 162 39 / 55%),
+      0 20px 60px -10px rgb(201 162 39 / 35%);
+  }
 
-.case:hover::before {
-  opacity: 1;
+  .case:hover::before {
+    opacity: 1;
+  }
 }
 
 .case__body {
@@ -166,7 +169,10 @@
   color: var(--card-text);
 }
 
-/* Ilustrações */
+/*
+  Ilustrações. As animações ficam paradas e só rodam enquanto o mouse ou o foco está no card,
+  para nada se mover sozinho por mais de 5 segundos (WCAG 2.2.2).
+*/
 .case-art {
   display: block;
   width: 100%;
@@ -201,6 +207,24 @@
 
 .case-art__bubble {
   animation: case-float 3s ease-in-out infinite;
+}
+
+.case-art__route,
+.case-art__ping,
+.case-art__bubble,
+.case-art__card-move,
+.case-art__draw {
+  animation-play-state: paused;
+}
+
+.case:focus-within :is(.case-art__route, .case-art__ping, .case-art__bubble, .case-art__card-move, .case-art__draw) {
+  animation-play-state: running;
+}
+
+@media (hover: hover) {
+  .case:hover :is(.case-art__route, .case-art__ping, .case-art__bubble, .case-art__card-move, .case-art__draw) {
+    animation-play-state: running;
+  }
 }
 
 .case-art__bubble:nth-of-type(2) {
@@ -300,7 +324,7 @@
 
 @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
   .cases__hint span {
-    animation: cases-nudge 1.6s ease-in-out infinite;
+    animation: cases-nudge 1.6s ease-in-out 3;
   }
 }
 
@@ -333,10 +357,14 @@
 
 @keyframes case-draw {
   from {
+    stroke-dashoffset: 0;
+  }
+
+  25% {
     stroke-dashoffset: 320;
   }
 
-  60%,
+  85%,
   to {
     stroke-dashoffset: 0;
   }
@@ -367,6 +395,25 @@
   border-bottom: 1px solid currentColor;
 }
 
-.case__link:hover {
-  border-bottom-width: 2px;
+@media (hover: hover) {
+  .case__link:hover {
+    border-bottom-width: 2px;
+  }
+}
+
+/* Print real da tela nos projetos autorais */
+.case__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+@media (max-width: 899px) {
+  .case__image {
+    aspect-ratio: 16 / 8;
+  }
 }

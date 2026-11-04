@@ -37,6 +37,8 @@ export type CaseStudy = {
   tags: string[]
   art: CaseArtName
   links?: { label: string; href: string }[]
+  // Print real da tela (só em projetos autorais, com dados de demonstração)
+  image?: { name: string; alt: string }
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -83,6 +85,7 @@ export const caseStudies: CaseStudy[] = [
       'No ar com funil em Kanban, painel de resultados, ficha do cliente e multiempresa. Já recebe leads reais de um quiz de diagnóstico, por webhook.',
     tags: ['Roadmap em fases', 'Multiempresa', 'Integração por webhook'],
     art: 'crm',
+    image: { name: 'crm-pro', alt: 'Painel de resultados do CRM Pro, com dados de demonstração' },
     links: [
       { label: 'Ver demo', href: 'https://crm-pro-jessica.vercel.app' },
       { label: 'Ver código', href: 'https://github.com/jessicaccl/crm-frontend' },
@@ -98,6 +101,7 @@ export const caseStudies: CaseStudy[] = [
       'Painel com receita recorrente, previsão, aging e provisão por faixa de atraso, lembretes automáticos por e-mail e 89 testes automatizados.',
     tags: ['Regras de negócio', 'Indicadores financeiros', 'Testes automatizados'],
     art: 'subscriptions',
+    image: { name: 'assina-mais', alt: 'Tela de provisões de pagamento do Assina+, com dados de demonstração' },
     links: [
       {
         label: 'Ver código',

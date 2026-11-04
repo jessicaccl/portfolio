@@ -42,3 +42,9 @@ npm run dev
 ## Stack
 
 React 19 · TypeScript · Vite · Vitest · Playwright · axe-core · Lighthouse CI · GitHub Actions · Vercel
+
+## Medição de conversão
+
+Os cliques em "Baixar currículo", LinkedIn, GitHub e nos links dos cases geram eventos (`src/lib/analytics.ts`).
+Para registrar, crie o site no [Plausible](https://plausible.io) e defina a variável `PLAUSIBLE_DOMAIN` no build
+(na Netlify: *Site configuration → Environment variables*). Sem ela, nenhum script de terceiros é carregado.

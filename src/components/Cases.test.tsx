@@ -57,4 +57,20 @@ describe('Cases em destaque (US07)', () => {
       expect(link).toHaveAttribute('target', '_blank')
     }
   })
+
+  it('cada link tem um nome único, que diz de qual projeto é', () => {
+    render(<Cases />)
+
+    const names = screen.getAllByRole('link').map((link) => link.textContent)
+    expect(new Set(names).size).toBe(names.length)
+    expect(screen.getByRole('link', { name: /ver código\s*do crm pro/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /ver código\s*do assina\+/i })).toBeInTheDocument()
+  })
+
+  it('os projetos autorais mostram a tela real com descrição', () => {
+    render(<Cases />)
+
+    expect(screen.getByRole('img', { name: /crm pro, com dados de demonstração/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /assina\+, com dados de demonstração/i })).toBeInTheDocument()
+  })
 })

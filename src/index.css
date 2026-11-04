@@ -26,6 +26,9 @@
   --space-gutter: 1rem;
   --max-width: 72rem;
 
+  /* Curva única de movimento: desacelera até parar */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
   color-scheme: light;
 }
 
@@ -49,6 +52,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Âncoras e itens focados pelo teclado não ficam escondidos sob o topo fixo (WCAG 2.4.11) */
+  scroll-padding-top: 5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -75,6 +80,20 @@ h3 {
   font-weight: 400;
   line-height: 1.15;
   margin: 0;
+}
+
+/* Sem palavra sozinha na última linha */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
 }
 
 a {
@@ -129,9 +148,10 @@ main:focus {
   font-size: 1rem;
   text-decoration: none;
   transition:
-    background-color 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+    background-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out),
+    transform 0.15s ease-out;
 }
 
 .btn--primary {
@@ -139,18 +159,29 @@ main:focus {
   color: var(--color-on-gold);
 }
 
-.btn--primary:hover {
-  background: #b8911d;
-}
-
 .btn--secondary {
   border-color: var(--color-text);
   color: var(--color-text);
 }
 
-.btn--secondary:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+@media (hover: hover) {
+  .btn--primary:hover {
+    background: #b8911d;
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+}
+
+/* Resposta física ao clicar ou tocar */
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active,
+  .theme-toggle:active,
+  .nav__toggle:active {
+    transform: scale(0.96);
+  }
 }
 
 .btn__icon {
@@ -195,7 +226,3 @@ main:focus {
   color: var(--color-text-muted);
 }
 
-/* Âncoras não ficam escondidas atrás do topo fixo */
-[id] {
-  scroll-margin-top: 5rem;
-}

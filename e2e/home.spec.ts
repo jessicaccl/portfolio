@@ -163,3 +163,33 @@ test.describe('modo escuro', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
   })
 })
+
+test.describe('foco e movimento', () => {
+  test.use({ viewport: { width: 1280, height: 800 } })
+
+  test('voltando com Shift+Tab, o item focado nunca fica escondido sob o topo (WCAG 2.4.11)', async ({ page }) => {
+    // Rolagem instantânea: com a suave, a medição pegaria o item ainda no meio do caminho.
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/')
+    await page.keyboard.press('End')
+    for (let i = 0; i < 30; i++) {
+      await page.keyboard.press('Shift+Tab')
+      const hidden = await page.evaluate(`(() => {
+        const el = document.activeElement
+        if (!el || el === document.body || el.closest('.header') || el.classList.contains('skip-link')) return false
+        const header = document.querySelector('.header').getBoundingClientRect().bottom
+        return el.getBoundingClientRect().bottom <= header
+      })()`)
+      expect(hidden).toBe(false)
+    }
+  })
+
+  test('as ilustrações não se movem sozinhas (WCAG 2.2.2)', async ({ page }) => {
+    await page.goto('/')
+    const states: string[] = await page.evaluate(
+      `[...document.querySelectorAll('.case-art__route, .case-art__ping, .case-art__bubble')].map((el) => getComputedStyle(el).animationPlayState)`,
+    )
+    expect(states.length).toBeGreaterThan(0)
+    expect(new Set(states)).toEqual(new Set(['paused']))
+  })
+})

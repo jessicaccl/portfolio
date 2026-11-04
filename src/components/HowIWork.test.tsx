@@ -36,7 +36,9 @@ describe('Como eu trabalho (US08)', () => {
   it('traz o aprendizado de que nenhuma etapa é opcional', () => {
     render(<HowIWork />)
 
-    expect(screen.getByText(/bugs aparecem quando uma etapa é pulada/i)).toBeInTheDocument()
-    expect(screen.getByText(/nenhuma etapa é opcional/i)).toBeInTheDocument()
+    const quote = screen.getByRole('blockquote')
+    expect(quote).toHaveTextContent(
+      'Bugs aparecem quando uma etapa é pulada. Por isso, nenhuma etapa é opcional.',
+    )
   })
 })

@@ -26,13 +26,15 @@
   background: var(--color-surface);
   border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
   transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
+    border-color 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
 }
 
-.skills__group:hover {
-  border-color: var(--color-gold);
-  box-shadow: 0 16px 40px -20px rgb(201 162 39 / 55%);
+@media (hover: hover) {
+  .skills__group:hover {
+    border-color: var(--color-gold);
+    box-shadow: 0 16px 40px -20px rgb(201 162 39 / 55%);
+  }
 }
 
 .skills__icon {

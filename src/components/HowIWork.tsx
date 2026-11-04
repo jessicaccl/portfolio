@@ -1,4 +1,5 @@
 import { workPhases } from '../content/home'
+import { RevealWords } from './RevealWords'
 import './HowIWork.css'
 
 function SparkIcon() {
@@ -70,9 +71,10 @@ export function HowIWork() {
       </div>
 
       <blockquote className="principle">
-        <p>
-          Bugs aparecem quando uma etapa é pulada. <em>Por isso, nenhuma etapa é opcional.</em>
-        </p>
+        <RevealWords
+          text="Bugs aparecem quando uma etapa é pulada."
+          accent="Por isso, nenhuma etapa é opcional."
+        />
       </blockquote>
     </section>
   )

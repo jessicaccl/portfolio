@@ -41,8 +41,10 @@
   border-bottom: 1px solid transparent;
 }
 
-.nav a:hover {
-  border-bottom-color: var(--color-accent);
+@media (hover: hover) {
+  .nav a:hover {
+    border-bottom-color: var(--color-accent);
+  }
 }
 
 .nav ul {
@@ -150,9 +152,11 @@
   stroke-linejoin: round;
 }
 
-.theme-toggle:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+@media (hover: hover) {
+  .theme-toggle:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
 }
 
 @media (min-width: 1024px) {

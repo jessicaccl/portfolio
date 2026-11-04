@@ -16,9 +16,29 @@ function siteUrlPlugin(): Plugin {
   }
 }
 
+// Analytics opcional: com PLAUSIBLE_DOMAIN definido no build (ex.: na Netlify), o script do
+// Plausible entra na página e os eventos de src/lib/analytics.ts passam a ser registrados.
+const plausibleDomain = process.env.PLAUSIBLE_DOMAIN
+
+function analyticsPlugin(): Plugin {
+  return {
+    name: 'analytics',
+    transformIndexHtml: () =>
+      plausibleDomain
+        ? [
+            {
+              tag: 'script',
+              attrs: { defer: true, 'data-domain': plausibleDomain, src: 'https://plausible.io/js/script.js' },
+              injectTo: 'head',
+            },
+          ]
+        : [],
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), siteUrlPlugin()],
+  plugins: [react(), siteUrlPlugin(), analyticsPlugin()],
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
