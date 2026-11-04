@@ -174,11 +174,15 @@ test.describe('foco e movimento', () => {
     await page.keyboard.press('End')
     for (let i = 0; i < 30; i++) {
       await page.keyboard.press('Shift+Tab')
-      // Espera o navegador terminar de levar o item focado para a tela antes de medir.
+      // Espera a rolagem do navegador assentar (mesma posição em dois quadros seguidos) antes de medir.
       await page.waitForFunction(
-        `(() => { const el = document.activeElement; if (!el || el === document.body) return true; const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight })()`,
+        `new Promise((resolve) => {
+          const top = () => document.activeElement.getBoundingClientRect().top
+          const first = top()
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve(top() === first)))
+        })`,
         undefined,
-        { timeout: 2000 },
+        { timeout: 3000, polling: 50 },
       )
       const hidden = await page.evaluate(`(() => {
         const el = document.activeElement
