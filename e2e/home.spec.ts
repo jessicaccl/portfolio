@@ -107,7 +107,7 @@ test.describe('cases no celular', () => {
     await carousel.scrollIntoViewIfNeeded()
 
     const first = page.getByRole('heading', { name: 'Plataforma de rastreamento' })
-    const last = page.getByRole('heading', { name: 'Agentes de IA no atendimento' })
+    const last = page.getByRole('heading', { name: 'Loja Irmãs Amare' })
     await expect(first).toBeInViewport()
     await expect(last).not.toBeInViewport()
 

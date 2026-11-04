@@ -1,5 +1,5 @@
 // Ilustrações dos cases: desenhos próprios, sem nenhum print ou dado real (confidencialidade).
-export type CaseArtName = 'tracking' | 'erp' | 'agents'
+export type CaseArtName = 'tracking' | 'erp' | 'agents' | 'crm' | 'subscriptions' | 'store'
 
 const gold = '#c9a227'
 const accent = '#a04a26'
@@ -88,7 +88,86 @@ function Agents() {
   )
 }
 
-const arts = { tracking: Tracking, erp: Erp, agents: Agents }
+function Crm() {
+  return (
+    <>
+      {[40, 130, 220].map((x) => (
+        <rect key={x} className="case-art__panel" x={x} y="30" width="76" height="140" rx="8" />
+      ))}
+      <g className="case-art__line">
+        <rect x="50" y="42" width="40" height="6" rx="3" />
+        <rect x="140" y="42" width="40" height="6" rx="3" />
+        <rect x="230" y="42" width="40" height="6" rx="3" />
+      </g>
+      <rect x="48" y="58" width="60" height="26" rx="5" fill={accent} opacity=".85" />
+      <rect x="48" y="92" width="60" height="26" rx="5" fill={accent} opacity=".55" />
+      <rect x="138" y="58" width="60" height="26" rx="5" fill={gold} opacity=".7" />
+      <rect className="case-art__card-move" x="138" y="92" width="60" height="26" rx="5" fill={gold} />
+      <rect x="228" y="58" width="60" height="26" rx="5" fill={gold} />
+      <path d="M248 71l6 6 12-12" fill="none" stroke="#141414" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  )
+}
+
+function Subscriptions() {
+  return (
+    <>
+      <path className="case-art__grid" d="M40 160H280M40 120H280M40 80H280" />
+      <path
+        className="case-art__draw"
+        d="M40 150 L90 138 L140 120 L190 104 L240 78 L280 60"
+        fill="none"
+        stroke={gold}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <g fill={accent}>
+        <rect x="56" y="150" width="18" height="10" rx="2" opacity=".5" />
+        <rect x="106" y="142" width="18" height="18" rx="2" opacity=".6" />
+        <rect x="156" y="132" width="18" height="28" rx="2" opacity=".7" />
+        <rect x="206" y="118" width="18" height="42" rx="2" opacity=".85" />
+      </g>
+      <g transform="translate(222 22)">
+        <rect className="case-art__panel" width="58" height="46" rx="6" />
+        <rect width="58" height="12" rx="6" fill={accent} />
+        <path d="M18 32l7 7 15-15" fill="none" stroke={gold} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </>
+  )
+}
+
+function Store() {
+  return (
+    <>
+      {[36, 112].map((x, index) => (
+        <g key={x}>
+          <rect className="case-art__panel" x={x} y="34" width="64" height="94" rx="8" />
+          <rect x={x + 8} y="42" width="48" height="52" rx="5" fill={index === 0 ? accent : gold} opacity=".75" />
+          <rect className="case-art__line" x={x + 8} y="102" width="36" height="6" rx="3" />
+          <rect className="case-art__line" x={x + 8} y="114" width="24" height="6" rx="3" />
+        </g>
+      ))}
+      <g className="case-art__bubble">
+        <path d="M206 72h68l-6 86h-56z" fill={gold} />
+        <path d="M222 72v-8a18 18 0 0 1 36 0v8" fill="none" stroke={accent} strokeWidth="4" strokeLinecap="round" />
+        <path d="M228 112l8 8 16-16" fill="none" stroke="#141414" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <g className="case-art__line">
+        <rect x="36" y="146" width="140" height="10" rx="5" />
+      </g>
+    </>
+  )
+}
+
+const arts = {
+  tracking: Tracking,
+  erp: Erp,
+  agents: Agents,
+  crm: Crm,
+  subscriptions: Subscriptions,
+  store: Store,
+}
 
 export function CaseArt({ name }: { name: CaseArtName }) {
   const Art = arts[name]

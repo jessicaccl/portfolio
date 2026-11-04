@@ -36,6 +36,7 @@ export type CaseStudy = {
   result: string
   tags: string[]
   art: CaseArtName
+  links?: { label: string; href: string }[]
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -71,6 +72,49 @@ export const caseStudies: CaseStudy[] = [
       'Colocamos em produção agentes de venda, locação, financeiro e pós-venda. O de cobrança negocia com clientes em atraso e aciona a equipe quando há acordo.',
     tags: ['IA aplicada', 'Monitoramento', 'Humano no controle'],
     art: 'agents',
+  },
+  {
+    title: 'CRM Pro',
+    context: 'Projeto autoral · no ar',
+    problem:
+      'Pequenas empresas perdem leads entre planilhas e WhatsApp e não enxergam o próprio funil de vendas.',
+    role: 'Fiz o discovery, o roadmap em 7 fases e as histórias com critérios de aceite, e desenvolvi o sistema do banco ao deploy.',
+    result:
+      'No ar com funil em Kanban, painel de resultados, ficha do cliente e multiempresa. Já recebe leads reais de um quiz de diagnóstico, por webhook.',
+    tags: ['Roadmap em fases', 'Multiempresa', 'Integração por webhook'],
+    art: 'crm',
+    links: [
+      { label: 'Ver demo', href: 'https://crm-pro-jessica.vercel.app' },
+      { label: 'Ver código', href: 'https://github.com/jessicaccl/crm-frontend' },
+    ],
+  },
+  {
+    title: 'Assina+',
+    context: 'Projeto autoral · código aberto',
+    problem:
+      'Negócios por assinatura precisam saber quanto vão receber e quem está atrasando, antes que o atraso vire prejuízo.',
+    role: 'Defini as regras de cobrança e de provisão, escrevi os critérios de aceite e desenvolvi a API e a interface com testes automatizados.',
+    result:
+      'Painel com receita recorrente, previsão, aging e provisão por faixa de atraso, lembretes automáticos por e-mail e 89 testes automatizados.',
+    tags: ['Regras de negócio', 'Indicadores financeiros', 'Testes automatizados'],
+    art: 'subscriptions',
+    links: [
+      {
+        label: 'Ver código',
+        href: 'https://github.com/jessicaccl/gerenciamento-de-assinaturas-frontend',
+      },
+    ],
+  },
+  {
+    title: 'Loja Irmãs Amare',
+    context: 'Negócio próprio · em lançamento',
+    problem:
+      'Depois de 10 anos de loja física, a marca precisava vender online sem depender de plataforma pronta e sem perder o atendimento próximo.',
+    role: 'Sou PO, QA e desenvolvedora: cortei o escopo para lançar em 15 dias, desenhei o checkout e testei a compra de ponta a ponta.',
+    result:
+      'Loja com vitrine, "compre o look", checkout com Pix, cartão e boleto, cálculo de frete, painel de pedidos e estoque e área da cliente.',
+    tags: ['MVP em 15 dias', 'Checkout e pagamentos', 'Negócio real'],
+    art: 'store',
   },
 ]
 

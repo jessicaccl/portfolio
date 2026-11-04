@@ -1,6 +1,7 @@
 import { useSyncExternalStore, type PointerEvent } from 'react'
 import { caseStudies } from '../content/home'
 import { CaseArt } from './CaseArt'
+import { ExternalLink } from './ExternalLink'
 import './Cases.css'
 
 // Holofote dourado: guarda a posição do cursor no card para o gradiente do CSS.
@@ -39,8 +40,8 @@ export function Cases() {
           Cases em destaque
         </h2>
         <p className="section__intro">
-          Produtos reais, em produção, construídos com o time. Os dados são preservados por
-          confidencialidade.
+          Na empresa, produtos em produção construídos com o time, com dados preservados por
+          confidencialidade. Nos projetos autorais, você pode abrir a demo e ver o código.
         </p>
 
         <p className="cases__hint" aria-hidden="true">
@@ -86,6 +87,16 @@ export function Cases() {
                       <li key={tag}>{tag}</li>
                     ))}
                   </ul>
+
+                  {item.links && (
+                    <p className="case__links">
+                      {item.links.map((link) => (
+                        <ExternalLink key={link.href} href={link.href} className="case__link">
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </ExternalLink>
+                      ))}
+                    </p>
+                  )}
                 </div>
               </article>
             </li>

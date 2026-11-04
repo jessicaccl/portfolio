@@ -309,3 +309,64 @@
     transform: translateX(4px);
   }
 }
+
+.case-art__card-move {
+  animation: case-card-move 4s ease-in-out infinite;
+}
+
+.case-art__draw {
+  stroke-dasharray: 320;
+  animation: case-draw 4s ease-in-out infinite;
+}
+
+@keyframes case-card-move {
+  0%,
+  30% {
+    transform: translate(0, 0);
+  }
+
+  60%,
+  100% {
+    transform: translate(90px, 34px);
+  }
+}
+
+@keyframes case-draw {
+  from {
+    stroke-dashoffset: 320;
+  }
+
+  60%,
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-art__card-move,
+  .case-art__draw {
+    animation: none;
+  }
+}
+
+/* Links da demo e do código, acima do holofote para continuarem clicáveis */
+.case__links {
+  position: relative;
+  z-index: 2;
+  margin: 1.25rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.case__link {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--card-label);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.case__link:hover {
+  border-bottom-width: 2px;
+}
