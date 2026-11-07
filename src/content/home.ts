@@ -10,6 +10,8 @@ export const impactStats: ImpactStat[] = [
   { value: '10 anos', label: 'à frente de um negócio próprio' },
 ]
 
+export type CaseScreen = { label: string; file: string; alt: string }
+
 export type CaseStudy = {
   title: string
   context: string
@@ -17,8 +19,8 @@ export type CaseStudy = {
   role: string
   result: string
   links?: { label: string; href: string }[]
-  // Tela real (só em projetos autorais, com dados de demonstração)
-  image?: { src: string; width: number; height: number; alt: string; caption: string }
+  // Telas reais (só em projetos autorais, com dados de demonstração)
+  gallery?: { address: string; screens: CaseScreen[] }
   // Nos cases sem tela, uma frase que resume a decisão mais importante
   note?: string
 }
@@ -32,12 +34,13 @@ export const caseStudies: CaseStudy[] = [
     role: 'Fiz o discovery, o roadmap em 7 fases e as histórias com critérios de aceite, e desenvolvi o sistema do banco ao deploy.',
     result:
       'No ar com funil em Kanban, painel de resultados, ficha do cliente e multiempresa. Já recebe leads reais de um quiz de diagnóstico, por webhook.',
-    image: {
-      src: '/cases/crm-pro-detalhe.webp',
-      width: 575,
-      height: 359,
-      alt: 'Indicadores e receita por mês no painel do CRM Pro, com dados de demonstração',
-      caption: 'Painel de resultados: ciclo de venda, previsão e receita por mês (dados de demonstração).',
+    gallery: {
+      address: 'crm-pro-jessica.vercel.app',
+      screens: [
+        { label: 'Funil', file: 'crm-pro-funil', alt: 'Funil de vendas em Kanban do CRM Pro' },
+        { label: 'Painel', file: 'crm-pro-painel', alt: 'Painel de resultados do CRM Pro' },
+        { label: 'Ficha do cliente', file: 'crm-pro-ficha', alt: 'Ficha do cliente com linha do tempo no CRM Pro' },
+      ],
     },
     links: [
       { label: 'Ver demo', href: 'https://crm-pro-jessica.vercel.app' },
@@ -62,12 +65,13 @@ export const caseStudies: CaseStudy[] = [
     role: 'Defini as regras de cobrança e de provisão, escrevi os critérios de aceite e desenvolvi a API e a interface com testes automatizados.',
     result:
       'Painel com receita recorrente, previsão, aging e provisão por faixa de atraso, lembretes automáticos por e-mail e 89 testes automatizados.',
-    image: {
-      src: '/cases/assina-mais-detalhe.webp',
-      width: 760,
-      height: 475,
-      alt: 'Receita recorrente e previsão de recebimentos no Assina+, com dados de demonstração',
-      caption: 'Provisões: receita recorrente, a receber e previsão por mês (dados de demonstração).',
+    gallery: {
+      address: 'assina+ · demonstração',
+      screens: [
+        { label: 'Provisões', file: 'assina-mais-provisoes', alt: 'Painel de provisões de pagamento do Assina+' },
+        { label: 'Cobranças', file: 'assina-mais-cobrancas', alt: 'Lista de cobranças com status no Assina+' },
+        { label: 'Clientes', file: 'assina-mais-clientes', alt: 'Clientes e histórico de cobranças no Assina+' },
+      ],
     },
     links: [
       {
@@ -108,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
   },
 ]
 
-export type WorkStep = { title: string; description: string; by: 'IA' | 'pessoas' }
+export type WorkStep = { title: string; description: string; output: string; by: 'IA' | 'pessoas' }
 
 // O registro do método: a mesma sequência para toda demanda.
 // A IA acelera as cinco primeiras etapas; nas três últimas, quem decide são as pessoas.
@@ -116,41 +120,49 @@ export const workLog: WorkStep[] = [
   {
     title: 'Demanda',
     description: 'Escuto gestão e operação para entender o problema antes da solução.',
+    output: 'O problema escrito em uma frase, com quem sofre com ele e por quê.',
     by: 'IA',
   },
   {
     title: 'História',
     description: 'Transformo a necessidade em história de usuário, com o valor para quem usa.',
+    output: 'A história de usuário no backlog do ClickUp, com o valor para quem usa.',
     by: 'IA',
   },
   {
     title: 'Critérios de aceite',
     description: 'Defino como saberemos que está pronto, incluindo os cenários de erro.',
+    output: 'Os cenários em Gherkin, incluindo os de erro, combinados antes de desenvolver.',
     by: 'IA',
   },
   {
     title: 'Desenvolvimento',
     description: 'Prototipo e desenvolvo com o time, sem perder o controle do que entra.',
+    output: 'O código revisado por mim antes de seguir, mesmo quando a IA escreveu a primeira versão.',
     by: 'IA',
   },
   {
     title: 'Teste',
     description: 'Valido contra os critérios e faço testes de regressão no que já funcionava.',
+    output: 'Cada critério verificado e a regressão do que já funcionava, com os bugs registrados.',
     by: 'IA',
   },
   {
     title: 'Homologação',
     description: 'Quem vai usar testa antes de ir ao ar. O “funciona” é deles, não só meu.',
+    output: 'O aceite de quem vai usar, no fluxo real do dia a dia.',
     by: 'pessoas',
   },
   {
     title: 'Produção',
     description: 'Publico com cuidado e comunico o que mudou para quem usa.',
+    output: 'A entrega no ar e um aviso curto do que mudou para quem usa.',
     by: 'pessoas',
   },
   {
     title: 'Monitoramento',
     description: 'Acompanho depois da entrega e trato bugs até a resolução.',
+    output: 'Os primeiros dias acompanhados de perto e cada bug levado até a resolução.',
     by: 'pessoas',
   },
 ]

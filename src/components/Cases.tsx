@@ -1,5 +1,6 @@
 import { caseStudies } from '../content/home'
 import { track } from '../lib/analytics'
+import { CaseGallery } from './CaseGallery'
 import { ExternalLink } from './ExternalLink'
 import './Cases.css'
 
@@ -65,18 +66,12 @@ export function Cases() {
                 )}
               </div>
 
-              {item.image ? (
-                <figure className="case__figure">
-                  <img
-                    src={item.image.src}
-                    alt={item.image.alt}
-                    width={item.image.width}
-                    height={item.image.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <figcaption>{item.image.caption}</figcaption>
-                </figure>
+              {item.gallery ? (
+                <CaseGallery
+                  project={item.title}
+                  address={item.gallery.address}
+                  screens={item.gallery.screens}
+                />
               ) : (
                 item.note && <blockquote className="case__note">{item.note}</blockquote>
               )}

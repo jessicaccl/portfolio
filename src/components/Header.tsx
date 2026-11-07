@@ -15,7 +15,26 @@ const sections = [
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const [current, setCurrent] = useState<string | null>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
+
+  // Marca no menu a seção que está no meio da tela
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
+    const targets = sections
+      .map((section) => document.querySelector(section.href))
+      .filter((element): element is Element => element !== null)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setCurrent(`#${entry.target.id}`)
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    targets.forEach((target) => observer.observe(target))
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -55,7 +74,11 @@ export function Header() {
               <ul className="nav__sections">
                 {sections.map((section) => (
                   <li key={section.href}>
-                    <a href={section.href} onClick={() => setOpen(false)}>
+                    <a
+                    href={section.href}
+                    aria-current={current === section.href ? 'true' : undefined}
+                    onClick={() => setOpen(false)}
+                  >
                       {section.label}
                     </a>
                   </li>

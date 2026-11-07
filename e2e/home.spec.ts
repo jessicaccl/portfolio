@@ -182,3 +182,32 @@ test.describe('foco e movimento', () => {
     expect(running).toEqual([])
   })
 })
+
+test.describe('interações', () => {
+  test.use({ viewport: { width: 1280, height: 800 } })
+
+  test('a galeria troca de tela, amplia e fecha com Esc devolvendo o foco', async ({ page }) => {
+    await page.goto('/')
+    const tabs = page.getByRole('tablist', { name: 'Telas do CRM Pro' })
+    await tabs.getByRole('tab', { name: 'Painel' }).click()
+    await expect(tabs.getByRole('tab', { name: 'Painel' })).toHaveAttribute('aria-selected', 'true')
+
+    const zoom = page.getByRole('button', { name: /ampliar a tela painel do crm pro/i })
+    await zoom.click()
+    const dialog = page.getByRole('dialog', { name: 'Painel, CRM Pro' })
+    await expect(dialog).toBeVisible()
+    await page.keyboard.press('Escape')
+    await expect(dialog).toBeHidden()
+    await expect(zoom).toBeFocused()
+  })
+
+  test('o menu marca a seção que está sendo lida', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/')
+    await page.locator('#como-trabalho').scrollIntoViewIfNeeded()
+    await page.evaluate(`window.scrollBy(0, 200)`)
+    const nav = page.getByRole('navigation', { name: 'Principal' })
+    await expect(nav.getByRole('link', { name: 'Como eu trabalho' })).toHaveAttribute('aria-current', 'true')
+  })
+})
+

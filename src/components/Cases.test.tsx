@@ -67,11 +67,12 @@ describe('Cases em destaque (US07)', () => {
     expect(screen.getByRole('link', { name: /ver código\s*do assina\+/i })).toBeInTheDocument()
   })
 
-  it('os projetos autorais mostram a tela real com descrição', () => {
+  it('os projetos autorais mostram as telas reais numa galeria com abas', () => {
     render(<Cases />)
 
-    expect(screen.getByRole('img', { name: /crm pro, com dados de demonstração/i })).toBeInTheDocument()
-    expect(screen.getByRole('img', { name: /assina\+, com dados de demonstração/i })).toBeInTheDocument()
+    expect(screen.getByRole('tablist', { name: 'Telas do CRM Pro' })).toBeInTheDocument()
+    expect(screen.getByRole('tablist', { name: 'Telas do Assina+' })).toBeInTheDocument()
+    expect(screen.getAllByRole('img', { name: /crm pro/i }).length).toBeGreaterThan(0)
   })
 
   it('sem tela real, o case mostra a decisão mais importante em destaque, sem desenho de produto', () => {

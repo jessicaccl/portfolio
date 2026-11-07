@@ -160,3 +160,9 @@
     height: 2.25rem;
   }
 }
+
+/* Seção atual: sublinhado na cor de destaque (não só a cor) */
+.nav a[aria-current='true'] {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
