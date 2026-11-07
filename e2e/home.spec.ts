@@ -65,7 +65,7 @@ test.describe('menu no celular (US10)', () => {
     const nav = page.getByRole('navigation', { name: 'Principal' })
     await expect(nav.getByRole('link', { name: 'Cases' })).toBeHidden()
 
-    await nav.getByRole('button', { name: 'Menu' }).click()
+    await nav.getByRole('button', { name: 'Abrir menu' }).click()
     await nav.getByRole('link', { name: 'Cases' }).click()
 
     await expect(page.getByRole('heading', { name: 'Cases', exact: true })).toBeInViewport()
@@ -76,12 +76,12 @@ test.describe('menu no celular (US10)', () => {
     await page.goto('/')
     const nav = page.getByRole('navigation', { name: 'Principal' })
 
-    await nav.getByRole('button', { name: 'Menu' }).click()
+    await nav.getByRole('button', { name: 'Abrir menu' }).click()
     await expect(nav.getByRole('link', { name: 'Trajetória' })).toBeVisible()
     await page.keyboard.press('Escape')
 
     await expect(nav.getByRole('link', { name: 'Trajetória' })).toBeHidden()
-    await expect(nav.getByRole('button', { name: 'Menu' })).toBeFocused()
+    await expect(nav.getByRole('button', { name: 'Abrir menu' })).toBeFocused()
   })
 })
 
@@ -91,7 +91,7 @@ test.describe('menu no desktop (US10)', () => {
   test('os links ficam visíveis e levam até a seção', async ({ page }) => {
     await page.goto('/')
     const nav = page.getByRole('navigation', { name: 'Principal' })
-    await expect(nav.getByRole('button', { name: 'Menu' })).toBeHidden()
+    await expect(nav.getByRole('button', { name: 'Abrir menu' })).toBeHidden()
 
     await nav.getByRole('link', { name: 'Trajetória' }).click()
     await expect(page.getByRole('heading', { name: 'Do varejo ao produto digital' })).toBeInViewport()
@@ -188,7 +188,11 @@ test.describe('interações', () => {
 
   test('a galeria troca de tela, amplia e fecha com Esc devolvendo o foco', async ({ page }) => {
     await page.goto('/')
-    const tabs = page.getByRole('tablist', { name: 'Telas do CRM Pro' })
+    await page.getByRole('button', { name: 'Pausar esteira' }).click()
+    await page.getByRole('button', { name: /ver o case\s*crm pro/i }).click()
+    const caseDialog = page.getByRole('dialog', { name: 'CRM Pro' })
+    await expect(caseDialog).toBeVisible()
+    const tabs = caseDialog.getByRole('tablist', { name: 'Telas do CRM Pro' })
     await tabs.getByRole('tab', { name: 'Painel' }).click()
     await expect(tabs.getByRole('tab', { name: 'Painel' })).toHaveAttribute('aria-selected', 'true')
 
@@ -208,6 +212,9 @@ test.describe('interações', () => {
     await page.evaluate(`window.scrollBy(0, 200)`)
     const nav = page.getByRole('navigation', { name: 'Principal' })
     await expect(nav.getByRole('link', { name: 'Como eu trabalho' })).toHaveAttribute('aria-current', 'true')
+
+    await page.evaluate(`window.scrollTo(0, 0)`)
+    await expect(nav.locator('[aria-current="true"]')).toHaveCount(0)
   })
 })
 
@@ -236,11 +243,48 @@ test.describe('celular', () => {
     await expect(description).toBeVisible()
   })
 
-  test('o índice leva direto ao case escolhido', async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: 'reduce' })
+})
+
+test.describe('esteira de cases', () => {
+  test.use({ viewport: { width: 1280, height: 800 } })
+
+  test('anda sozinha, para no botão e dá para arrastar com o mouse', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('navigation', { name: 'Índice dos cases' }).getByRole('link', { name: /assina\+/i }).click()
-    await expect(page.getByRole('heading', { name: 'Assina+', level: 3 })).toBeInViewport()
+    const belt = page.getByRole('region', { name: /esteira de cases/i })
+    await belt.scrollIntoViewIfNeeded()
+    await page.mouse.move(5, 5)
+
+    const left = () => belt.evaluate((element) => element.scrollLeft)
+    const start = await left()
+    await page.waitForTimeout(1200)
+    expect(await left()).toBeGreaterThan(start)
+
+    await page.getByRole('button', { name: 'Pausar esteira' }).click()
+    await page.mouse.move(5, 5)
+    const paused = await left()
+    await page.waitForTimeout(800)
+    expect(await left()).toBe(paused)
+
+    const box = (await belt.boundingBox())!
+    await page.mouse.move(box.x + 700, box.y + 150)
+    await page.mouse.down()
+    await page.mouse.move(box.x + 300, box.y + 150, { steps: 8 })
+    await page.mouse.up()
+    expect(await left()).toBeGreaterThan(paused + 200)
+    await expect(page.getByRole('dialog')).toHaveCount(0)
+  })
+
+  test('cada card abre o case numa janela que fecha com Esc', async ({ page }) => {
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Pausar esteira' }).click()
+    const open = page.getByRole('button', { name: /ver o case\s*monitoramento dos atendimentos/i })
+    await open.click()
+    const dialog = page.getByRole('dialog', { name: 'Monitoramento dos atendimentos' })
+    await expect(dialog).toBeVisible()
+    await expect(dialog.getByText('Meu papel')).toBeVisible()
+    await page.keyboard.press('Escape')
+    await expect(dialog).toBeHidden()
+    await expect(open).toBeFocused()
   })
 })
 

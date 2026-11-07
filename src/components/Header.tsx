@@ -21,13 +21,16 @@ export function Header() {
   // Marca no menu a seção que está no meio da tela
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return
-    const targets = sections
-      .map((section) => document.querySelector(section.href))
+    // O topo também é observado: quando ele está na tela, nenhum item fica marcado
+    const targets = ['#inicio', ...sections.map((section) => section.href)]
+      .map((selector) => document.querySelector(selector))
       .filter((element): element is Element => element !== null)
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) setCurrent(`#${entry.target.id}`)
+          if (entry.isIntersecting) {
+            setCurrent(entry.target.id === 'inicio' ? null : `#${entry.target.id}`)
+          }
         }
       },
       { rootMargin: '-45% 0px -50% 0px' },
@@ -67,7 +70,12 @@ export function Header() {
               aria-controls="menu-principal"
               onClick={() => setOpen((value) => !value)}
             >
-              {open ? 'Fechar' : 'Menu'}
+              <span className="nav__burger" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="visually-hidden">{open ? 'Fechar menu' : 'Abrir menu'}</span>
             </button>
 
             <div id="menu-principal" className={open ? 'nav__panel is-open' : 'nav__panel'}>
@@ -75,10 +83,10 @@ export function Header() {
                 {sections.map((section) => (
                   <li key={section.href}>
                     <a
-                    href={section.href}
-                    aria-current={current === section.href ? 'true' : undefined}
-                    onClick={() => setOpen(false)}
-                  >
+                      href={section.href}
+                      aria-current={current === section.href ? 'true' : undefined}
+                      onClick={() => setOpen(false)}
+                    >
                       {section.label}
                     </a>
                   </li>

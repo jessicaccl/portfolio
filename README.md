@@ -5,6 +5,34 @@
 
 Este repositório é o meu portfólio e também um case: ele foi construído como um produto, com PRD, user stories, critérios de aceite e qualidade verificada a cada mudança.
 
+![Topo do portfólio no modo claro](docs/screenshots/01-topo-claro.webp)
+
+## Telas
+
+| Modo escuro | Sobre mim, como uma folha de discovery |
+|---|---|
+| ![Topo no modo escuro](docs/screenshots/02-topo-escuro.webp) | ![Sobre mim com folha pautada e post-its](docs/screenshots/03-sobre-mim.webp) |
+
+| Esteira de cases (anda sozinha e dá para arrastar) | Case aberto, com as telas reais |
+|---|---|
+| ![Esteira de cases](docs/screenshots/04-esteira-de-cases.webp) | ![Case do CRM Pro aberto](docs/screenshots/05-case-aberto.webp) |
+
+| Como eu trabalho, num MacBook | Fechamento, como uma página do caderno |
+|---|---|
+| ![Registro do método dentro de um MacBook](docs/screenshots/06-metodo-macbook.webp) | ![Seção de contato](docs/screenshots/07-contato.webp) |
+
+| Celular | Menu no celular | Cases no celular |
+|---|---|---|
+| ![Topo no celular](docs/screenshots/08-celular-topo.webp) | ![Menu aberto no celular](docs/screenshots/09-celular-menu.webp) | ![Esteira de cases no celular](docs/screenshots/10-celular-cases.webp) |
+
+### Decisões de design
+
+- **Paleta lavanda luminosa:** azul-marinho no texto, terracota nos destaques, lavanda e verde-oliva nos detalhes, com modo claro e escuro que segue o sistema.
+- **Estética de caderno:** papel pontilhado, fita adesiva e post-its no topo, no Sobre mim e no fechamento, para remeter ao discovery.
+- **Menos texto na tela:** os cases mostram uma frase na esteira e abrem os detalhes numa janela.
+- **Confidencialidade:** os cases da empresa usam ilustrações próprias, sem dados reais. Os projetos autorais mostram as telas, com dados de demonstração.
+- **Movimento com controle:** a esteira para no mouse, no foco, no toque e no botão de pausa, e fica parada para quem pede menos movimento.
+
 ## Documentos de produto
 
 - [Mini-PRD](docs/PRD.md): problema, público, métricas de sucesso, escopo e riscos
@@ -41,7 +69,7 @@ npm run dev
 
 ## Stack
 
-React 19 · TypeScript · Vite · Vitest · Playwright · axe-core · Lighthouse CI · GitHub Actions · Vercel
+React 19 · TypeScript · Vite · Vitest · Playwright · axe-core · Lighthouse CI · GitHub Actions · Netlify
 
 ## Medição de conversão
 

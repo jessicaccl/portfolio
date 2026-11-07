@@ -18,8 +18,10 @@ function App() {
       </a>
       <Header />
       <main id="conteudo" tabIndex={-1}>
-        <Hero />
-        <ImpactNumbers />
+        <div className="notebook">
+          <Hero />
+          <ImpactNumbers />
+        </div>
         <About />
         <Cases />
         <HowIWork />

@@ -8,32 +8,32 @@ describe('Menu (US10)', () => {
     const user = userEvent.setup()
     render(<Header />)
 
-    const toggle = screen.getByRole('button', { name: 'Menu' })
+    const toggle = screen.getByRole('button', { name: 'Abrir menu' })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     expect(toggle).toHaveAttribute('aria-controls', 'menu-principal')
 
     await user.click(toggle)
-    expect(screen.getByRole('button', { name: 'Fechar' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('button', { name: 'Fechar menu' })).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('fecha ao escolher uma seção', async () => {
     const user = userEvent.setup()
     render(<Header />)
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }))
+    await user.click(screen.getByRole('button', { name: 'Abrir menu' }))
     await user.click(screen.getByRole('link', { name: 'Cases' }))
 
-    expect(screen.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.getByRole('button', { name: 'Abrir menu' })).toHaveAttribute('aria-expanded', 'false')
   })
 
   it('fecha com Esc e devolve o foco ao botão', async () => {
     const user = userEvent.setup()
     render(<Header />)
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }))
+    await user.click(screen.getByRole('button', { name: 'Abrir menu' }))
     await user.keyboard('{Escape}')
 
-    const toggle = screen.getByRole('button', { name: 'Menu' })
+    const toggle = screen.getByRole('button', { name: 'Abrir menu' })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     expect(toggle).toHaveFocus()
   })

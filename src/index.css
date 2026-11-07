@@ -1,24 +1,39 @@
 /*
-  Sistema editorial: a página lê como uma revista. Estrutura por fios finos e tipografia,
-  sem cards, sem pílulas e sem degradês. Um único momento de movimento (a frase do método).
+  Paleta "lavanda luminosa": azul-marinho no texto, terracota nos destaques,
+  lavanda e verde-oliva nos detalhes. A estética de caderno (papel pontilhado, fita,
+  post-its) costura o topo, o Sobre mim e o fechamento.
 
-  Contraste sobre o fundo bege (WCAG 2.1 AA pede 4,5:1 para texto normal):
-  - texto preto 16,9:1 · texto secundário 8,2:1 · terracota 5,1:1
-  Modo escuro, sobre #171513: creme 15,4:1 · texto secundário 9,2:1 · terracota clara 6,9:1
+  Contraste (WCAG 2.1 AA, 4,5:1 para texto normal):
+  - Claro, sobre #faf8fd: marinho 14,8:1 · secundário 6,9:1 · terracota 5,5:1 (4,8:1 sobre o lavanda claro) · oliva 5,9:1
+  - Escuro, sobre #11152a: texto 15,9:1 · secundário 9,1:1 · terracota clara 7,6:1 · lavanda 8,1:1
   O tema vem de data-theme no <html>, definido antes do React carregar (index.html).
 */
 :root {
-  --color-bg: #f3ece2;
-  --color-surface: #e9dfd0;
-  --color-text: #141414;
-  --color-text-muted: #4a443d;
-  --color-accent: #a04a26;
-  --color-gold: #c9a227;
+  --color-bg: #faf8fd;
+  --color-surface: #f1edfa;
+  --color-paper: #ffffff;
+  --color-text: #1c2541;
+  --color-text-muted: #525a74;
+  --color-accent: #a8472a;
+  --color-olive: #5d6b32;
+  --color-lav: #c9c1ec;
+  --color-lav-soft: #ece8f8;
+  --color-olive-soft: #e7ead8;
+  --color-terra-soft: #f5dfd4;
+  /* Botão principal e o texto sobre ele */
+  --color-navy: #1c2541;
+  --color-on-navy: #ffffff;
   /* Fios: o forte separa seções, o suave separa itens dentro delas */
-  --color-rule: #141414;
-  --color-rule-soft: #d6cab9;
-  /* Fundo das faixas escuras do modo escuro */
-  --color-ink: #141414;
+  --color-rule: #1c2541;
+  --color-rule-soft: #dcd6ea;
+  /* Caderno: pontos do papel, brilho lavanda e fita adesiva */
+  --color-dot: rgb(28 37 65 / 13%);
+  --color-glow: rgb(201 193 236 / 55%);
+  --color-tape: rgb(201 193 236 / 80%);
+  /* MacBook claro */
+  --color-screen: #fbfbfe;
+  --color-lid-top: #ececf1;
+  --color-lid-bottom: #d6d6de;
 
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
@@ -39,15 +54,29 @@
   }
 }
 
+/* Escuro: uma noite azul-marinho, com a mesma paleta */
 :root[data-theme='dark'] {
-  --color-bg: #171513;
-  --color-surface: #211e1b;
-  --color-text: #f3ece2;
-  --color-text-muted: #c2b8aa;
-  --color-accent: #e08a5f;
-  --color-rule: #f3ece2;
-  --color-rule-soft: #3b3631;
-  --color-ink: #0d0c0b;
+  --color-bg: #11152a;
+  --color-surface: #1a1f38;
+  --color-paper: #1d2343;
+  --color-text: #eef0fa;
+  --color-text-muted: #b6bbd3;
+  --color-accent: #ec9470;
+  --color-olive: #b7c47e;
+  --color-lav: #a79de2;
+  --color-lav-soft: #232948;
+  --color-olive-soft: #262d20;
+  --color-terra-soft: #35251f;
+  --color-navy: #c9c1ec;
+  --color-on-navy: #11152a;
+  --color-rule: #eef0fa;
+  --color-rule-soft: #2d3354;
+  --color-dot: rgb(238 240 250 / 10%);
+  --color-glow: rgb(167 157 226 / 22%);
+  --color-tape: rgb(167 157 226 / 45%);
+  --color-screen: #151a30;
+  --color-lid-top: #3b3e4c;
+  --color-lid-bottom: #272a35;
 
   color-scheme: dark;
 }
@@ -115,8 +144,8 @@ main:focus {
 }
 
 ::selection {
-  background: var(--color-gold);
-  color: #141414;
+  background: var(--color-lav);
+  color: #1c2541;
 }
 
 .visually-hidden {
@@ -162,8 +191,8 @@ main:focus {
 }
 
 .btn--primary {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-navy);
+  color: var(--color-on-navy);
 }
 
 .btn--secondary {
@@ -178,7 +207,7 @@ main:focus {
 @media (hover: hover) {
   .btn--primary:hover {
     background: var(--color-accent);
-    color: var(--color-bg);
+    color: var(--color-on-navy);
   }
 
   .btn--secondary:hover {
@@ -238,4 +267,13 @@ main:focus {
   html {
     scroll-padding-bottom: 5rem;
   }
+}
+
+/* Caderno: papel pontilhado com brilho lavanda (topo e fechamento) */
+.notebook {
+  background:
+    radial-gradient(60rem 30rem at 85% 0%, var(--color-glow), transparent 60%),
+    radial-gradient(var(--color-dot) 1.2px, transparent 1.3px) 0 0 / 22px 22px,
+    var(--color-bg);
+  padding-bottom: 2.5rem;
 }

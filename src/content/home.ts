@@ -23,7 +23,18 @@ export type CaseStudy = {
   gallery?: { address: string; screens: CaseScreen[] }
   // Nos cases sem tela, uma frase que resume a decisão mais importante
   note?: string
+  // Imagem do card na esteira: tela real ou ilustração própria (cases da empresa)
+  art: CaseArt
+  // Resumo de uma linha para o card
+  summary: string
 }
+
+export type CaseArt =
+  | { kind: 'shot'; file: string; tone: 'lav' | 'olive' | 'terra' }
+  | { kind: 'map' }
+  | { kind: 'chat' }
+  | { kind: 'monitor' }
+  | { kind: 'erp' }
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -46,6 +57,8 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Ver demo', href: 'https://crm-pro-jessica.vercel.app' },
       { label: 'Ver código', href: 'https://github.com/jessicaccl/crm-frontend' },
     ],
+    art: { kind: 'shot', file: 'crm-pro-funil', tone: 'lav' },
+    summary: 'Funil de vendas recebendo leads reais por webhook.',
   },
   {
     title: 'Plataforma de rastreamento',
@@ -56,6 +69,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       'Construímos uma plataforma própria para mais de 150 motos, com bloqueio automático de inadimplentes, cerca virtual e custo menor de rastreamento.',
     note: '“Bloquear o inadimplente, nunca com a moto em movimento.” A regra de negócio mais importante virou critério de aceite.',
+    art: { kind: 'map' },
+    summary: 'Bloqueio do inadimplente, nunca com a moto em movimento.',
   },
   {
     title: 'Assina+',
@@ -79,6 +94,8 @@ export const caseStudies: CaseStudy[] = [
         href: 'https://github.com/jessicaccl/gerenciamento-de-assinaturas-frontend',
       },
     ],
+    art: { kind: 'shot', file: 'assina-mais-provisoes', tone: 'olive' },
+    summary: 'Cobrança e provisão de assinaturas, com 89 testes.',
   },
   {
     title: 'Agentes de IA no atendimento',
@@ -89,6 +106,20 @@ export const caseStudies: CaseStudy[] = [
     result:
       'Colocamos em produção agentes de venda, locação, financeiro e pós-venda. O de cobrança negocia com clientes em atraso e aciona a equipe quando há acordo.',
     note: 'A IA atende, cobra e agenda. Quando o cliente propõe um acordo, quem assume é uma pessoa.',
+    art: { kind: 'chat' },
+    summary: 'Quatro agentes em produção; no acordo, quem assume é uma pessoa.',
+  },
+  {
+    title: 'Monitoramento dos atendimentos',
+    context: 'Locadora de motos · com o time',
+    problem:
+      'Com agentes de IA e a equipe atendendo juntos, faltava ver num só lugar se cada atendimento resolvia o problema do cliente.',
+    role: 'Defini os indicadores com a gestão e desenvolvi o painel que acompanha a qualidade dos atendimentos dos agentes e da equipe.',
+    result:
+      'Num só painel, o time mede resolução, recorrência dos clientes, tempo médio, satisfação, picos de atendimento e a divisão entre agentes de IA e equipe.',
+    note: 'Medir a qualidade do atendimento é o que mostra se a IA está ajudando o cliente ou só respondendo rápido.',
+    art: { kind: 'monitor' },
+    summary: 'Qualidade, resolução, recorrência e satisfação dos agentes e da equipe num só lugar.',
   },
   {
     title: 'ERP de locação',
@@ -99,16 +130,21 @@ export const caseStudies: CaseStudy[] = [
     result:
       'O time evolui continuamente os módulos operacional, gerencial e financeiro, com pagamentos integrados e baixa automática, assinatura digital de contratos e consulta de infrações.',
     note: 'Nenhuma melhoria vai ao ar sem passar pelos critérios de aceite e pelo teste de regressão.',
+    art: { kind: 'erp' },
+    summary: 'Do cadastro ao pós-venda; nada vai ao ar sem critérios e regressão.',
   },
   {
     title: 'Loja Irmãs Amare',
-    context: 'Negócio próprio · em lançamento',
+    context: 'Negócio próprio · no ar',
     problem:
       'Depois de 10 anos de loja física, a marca precisava vender online sem depender de plataforma pronta e sem perder o atendimento próximo.',
     role: 'Sou PO, QA e desenvolvedora: cortei o escopo para lançar em 15 dias, desenhei o checkout e testei a compra de ponta a ponta.',
     result:
       'Loja com vitrine, “compre o look”, checkout com Pix, cartão e boleto, cálculo de frete, painel de pedidos e estoque e área da cliente.',
     note: 'Lançar em 15 dias foi, antes de tudo, decidir o que ficava de fora.',
+    art: { kind: 'shot', file: 'amare-home', tone: 'terra' },
+    summary: 'Do zero ao checkout com Pix, cartão e boleto em 15 dias.',
+    links: [{ label: 'Ver a loja', href: 'https://amare-omega.vercel.app' }],
   },
 ]
 

@@ -24,48 +24,55 @@ export function HowIWork() {
           Como eu trabalho
         </h2>
         <p className="section__lede">
-          Toda demanda passa pelas mesmas oito etapas. A IA me dá velocidade nas cinco primeiras; nas
-          três últimas, quem decide são as pessoas.
+          Toda demanda passa pelas mesmas oito etapas. A IA me dá velocidade nas cinco primeiras;
+          nas três últimas, quem decide são as pessoas.
         </p>
       </div>
 
-      <div className="log">
-        <p className="log__bar">
-          registro do método <span>· clique numa etapa para ver o que ela entrega</span>
-        </p>
-        <ol className="log__list">
-          {workLog.map((step, index) => {
-            const isOpen = open.has(index)
-            return (
-              <li key={step.title} className={isOpen ? 'log__row is-open' : 'log__row'}>
-                <span className="log__index" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className="log__title">
-                  <button
-                    type="button"
-                    className="log__toggle"
-                    aria-expanded={isOpen}
-                    aria-controls={`${id}-${index}-d ${id}-${index}`}
-                    onClick={() => toggle(index)}
-                  >
-                    {step.title}
-                    <span className="log__chevron" aria-hidden="true" />
-                  </button>
-                </h3>
-                <p id={`${id}-${index}-d`} className="log__description">
-                  {step.description}
-                </p>
-                <span className={step.by === 'IA' ? 'log__by' : 'log__by log__by--people'}>
-                  {step.by === 'IA' ? 'com IA' : 'pessoas decidem'}
-                </span>
-                <div id={`${id}-${index}`} className="log__output" hidden={!isOpen}>
-                  <span className="log__output-label">entrega</span> {step.output}
-                </div>
-              </li>
-            )
-          })}
-        </ol>
+      {/* O registro aparece na tela de um MacBook claro */}
+      <div className="mac">
+        <div className="mac__lid">
+          <div className="log">
+            <p className="log__bar">
+              <span className="log__lights" aria-hidden="true" />
+              registro do método <span>· clique numa etapa para ver o que ela entrega</span>
+            </p>
+            <ol className="log__list">
+              {workLog.map((step, index) => {
+                const isOpen = open.has(index)
+                return (
+                  <li key={step.title} className={isOpen ? 'log__row is-open' : 'log__row'}>
+                    <span className="log__index" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="log__title">
+                      <button
+                        type="button"
+                        className="log__toggle"
+                        aria-expanded={isOpen}
+                        aria-controls={`${id}-${index}-d ${id}-${index}`}
+                        onClick={() => toggle(index)}
+                      >
+                        {step.title}
+                        <span className="log__chevron" aria-hidden="true" />
+                      </button>
+                    </h3>
+                    <p id={`${id}-${index}-d`} className="log__description">
+                      {step.description}
+                    </p>
+                    <span className={step.by === 'IA' ? 'log__by' : 'log__by log__by--people'}>
+                      {step.by === 'IA' ? 'com IA' : 'pessoas decidem'}
+                    </span>
+                    <div id={`${id}-${index}`} className="log__output" hidden={!isOpen}>
+                      <span className="log__output-label">entrega</span> {step.output}
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
+        </div>
+        <div className="mac__base" aria-hidden="true" />
       </div>
 
       <blockquote className="principle">
