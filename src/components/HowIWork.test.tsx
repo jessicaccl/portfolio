@@ -49,6 +49,8 @@ describe('Como eu trabalho (US08)', () => {
     expect(test).toHaveAttribute('aria-expanded', 'false')
     await user.click(test)
     expect(test).toHaveAttribute('aria-expanded', 'true')
-    expect(document.getElementById(test.getAttribute('aria-controls')!)).toBeVisible()
+    for (const id of test.getAttribute('aria-controls')!.split(' ')) {
+      expect(document.getElementById(id)).toBeVisible()
+    }
   })
 })

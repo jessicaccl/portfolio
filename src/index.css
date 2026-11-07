@@ -223,3 +223,19 @@ main:focus {
   font-size: 1.125rem;
   color: var(--color-text-muted);
 }
+
+/* Celular: a ação principal ocupa a largura da coluna; os links ficam lado a lado embaixo */
+@media (max-width: 599px) {
+  .hero__actions .btn--primary,
+  .contact__actions .btn--primary {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
+/* Espaço para a barra fixa do currículo não cobrir itens focados ou âncoras */
+@media (max-width: 899px) {
+  html {
+    scroll-padding-bottom: 5rem;
+  }
+}

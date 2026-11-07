@@ -211,3 +211,36 @@ test.describe('interações', () => {
   })
 })
 
+test.describe('celular', () => {
+  test.use({ viewport: { width: 390, height: 844 } })
+
+  test('a barra do currículo aparece depois do topo e some no contato', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/')
+    const bar = page.locator('.cv-bar')
+    await expect(bar).toHaveCount(0)
+
+    await page.locator('#cases').scrollIntoViewIfNeeded()
+    await expect(bar.getByRole('link', { name: /baixar currículo/i })).toBeVisible()
+
+    await page.locator('#contato').scrollIntoViewIfNeeded()
+    await expect(bar).toHaveCount(0)
+  })
+
+  test('as etapas do método mostram a descrição só quando abertas', async ({ page }) => {
+    await page.goto('/')
+    const step = page.getByRole('button', { name: 'Teste' })
+    const description = page.getByText('Valido contra os critérios e faço testes de regressão')
+    await expect(description).toBeHidden()
+    await step.click()
+    await expect(description).toBeVisible()
+  })
+
+  test('o índice leva direto ao case escolhido', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/')
+    await page.getByRole('navigation', { name: 'Índice dos cases' }).getByRole('link', { name: /assina\+/i }).click()
+    await expect(page.getByRole('heading', { name: 'Assina+', level: 3 })).toBeInViewport()
+  })
+})
+

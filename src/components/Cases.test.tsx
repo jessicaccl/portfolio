@@ -50,7 +50,9 @@ describe('Cases em destaque (US07)', () => {
     for (const card of companyCases()) {
       expect(within(card).queryAllByRole('link')).toHaveLength(0)
     }
-    const links = screen.getAllByRole('link')
+    const links = screen
+      .getAllByRole('article')
+      .flatMap((card) => within(card).queryAllByRole('link'))
     expect(links.length).toBeGreaterThan(0)
     for (const link of links) {
       expect(link).toHaveAttribute('href', expect.stringMatching(/^https:\/\//))
@@ -61,7 +63,10 @@ describe('Cases em destaque (US07)', () => {
   it('cada link tem um nome único, que diz de qual projeto é', () => {
     render(<Cases />)
 
-    const names = screen.getAllByRole('link').map((link) => link.textContent)
+    const names = screen
+      .getAllByRole('article')
+      .flatMap((card) => within(card).queryAllByRole('link'))
+      .map((link) => link.textContent)
     expect(new Set(names).size).toBe(names.length)
     expect(screen.getByRole('link', { name: /ver código\s*do crm pro/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /ver código\s*do assina\+/i })).toBeInTheDocument()
@@ -81,6 +86,18 @@ describe('Cases em destaque (US07)', () => {
     for (const card of companyCases()) {
       expect(within(card).getByRole('blockquote')).not.toBeEmptyDOMElement()
       expect(card.querySelector('svg')).toBeNull()
+    }
+  })
+
+  it('o índice leva a cada case da lista', () => {
+    const { container } = render(<Cases />)
+
+    const index = screen.getByRole('navigation', { name: 'Índice dos cases' })
+    const links = within(index).getAllByRole('link')
+    expect(links).toHaveLength(screen.getAllByRole('article').length)
+    for (const link of links) {
+      const target = container.querySelector(link.getAttribute('href')!)
+      expect(target?.tagName).toBe('ARTICLE')
     }
   })
 })

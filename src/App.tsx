@@ -2,6 +2,7 @@ import { About } from './components/About'
 import { Career } from './components/Career'
 import { Cases } from './components/Cases'
 import { Contact } from './components/Contact'
+import { CvBar } from './components/CvBar'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
@@ -27,6 +28,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <CvBar />
     </>
   )
 }

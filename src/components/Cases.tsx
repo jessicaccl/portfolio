@@ -4,6 +4,16 @@ import { CaseGallery } from './CaseGallery'
 import { ExternalLink } from './ExternalLink'
 import './Cases.css'
 
+// Endereço de cada case para o índice: "CRM Pro" vira "case-crm-pro"
+const caseAnchor = (title: string) =>
+  'case-' +
+  title
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+
 export function Cases() {
   return (
     <section id="cases" className="section" aria-labelledby="cases-title">
@@ -15,12 +25,27 @@ export function Cases() {
           Na empresa, os dados são preservados por confidencialidade. Nos projetos autorais, dá para
           abrir a demo e ver o código.
         </p>
+        <nav aria-label="Índice dos cases" className="cases__index">
+          <ol>
+            {caseStudies.map((item, index) => (
+              <li key={item.title}>
+                <a href={`#${caseAnchor(item.title)}`}>
+                  <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span> {item.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
       </div>
 
       <ol className="cases">
         {caseStudies.map((item, index) => (
           <li key={item.title}>
-            <article className="case" aria-labelledby={`case-${index}`}>
+            <article
+              id={caseAnchor(item.title)}
+              className="case"
+              aria-labelledby={`case-${index}`}
+            >
               <p className="case__number" aria-hidden="true">
                 {String(index + 1).padStart(2, '0')}
               </p>

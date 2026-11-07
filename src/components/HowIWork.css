@@ -75,13 +75,6 @@
   color: var(--color-text);
 }
 
-@media (max-width: 899px) {
-  .log__description,
-  .log__by {
-    grid-column: 2;
-  }
-}
-
 /* A frase do método, o único momento de movimento da página */
 .principle {
   margin: 3.5rem 0 0;
@@ -173,5 +166,45 @@
   from {
     opacity: 0;
     transform: translateY(-4px);
+  }
+}
+
+/*
+  Celular: cada etapa ocupa uma linha (nome e quem conduz); a descrição e a entrega
+  aparecem ao tocar. O registro cai de quase duas telas para menos de uma.
+*/
+@media (max-width: 899px) {
+  .log__row {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .log__title {
+    grid-column: 2;
+  }
+
+  .log__by {
+    grid-column: 3;
+    grid-row: 1;
+    white-space: nowrap;
+  }
+
+  .log__description,
+  .log__output {
+    grid-column: 2 / -1;
+  }
+
+  .log__row:not(.is-open) .log__description {
+    display: none;
+  }
+
+  .log__description {
+    margin-top: 0.25rem;
+  }
+
+  .log__output {
+    padding-top: 0.5rem;
   }
 }

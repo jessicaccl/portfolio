@@ -46,14 +46,16 @@ export function HowIWork() {
                     type="button"
                     className="log__toggle"
                     aria-expanded={isOpen}
-                    aria-controls={`${id}-${index}`}
+                    aria-controls={`${id}-${index}-d ${id}-${index}`}
                     onClick={() => toggle(index)}
                   >
                     {step.title}
                     <span className="log__chevron" aria-hidden="true" />
                   </button>
                 </h3>
-                <p className="log__description">{step.description}</p>
+                <p id={`${id}-${index}-d`} className="log__description">
+                  {step.description}
+                </p>
                 <span className={step.by === 'IA' ? 'log__by' : 'log__by log__by--people'}>
                   {step.by === 'IA' ? 'com IA' : 'pessoas decidem'}
                 </span>
