@@ -31,7 +31,7 @@ export function Hero() {
           <img
             src={profile.photo.src}
             srcSet={profile.photo.srcSet}
-            sizes="(min-width: 900px) 26rem, 100vw"
+            sizes="(min-width: 900px) 26rem, calc(100vw - 2.5rem)"
             alt={profile.photo.alt}
             width={480}
             height={600}

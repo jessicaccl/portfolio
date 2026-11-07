@@ -16,7 +16,8 @@ export const profile = {
   },
   photo: {
     src: '/foto/jessica-lima-960.webp',
-    srcSet: '/foto/jessica-lima-480.webp 480w, /foto/jessica-lima-960.webp 960w',
+    srcSet:
+      '/foto/jessica-lima-480.webp 480w, /foto/jessica-lima-640.webp 640w, /foto/jessica-lima-720.webp 720w, /foto/jessica-lima-960.webp 960w',
     alt: 'Foto de Jessica Lima',
   } as { src: string; srcSet: string; alt: string } | null,
 }

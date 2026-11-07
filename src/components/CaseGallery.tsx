@@ -115,7 +115,14 @@ export function CaseGallery({ project, address, screens }: Props) {
             Fechar
           </button>
         </div>
-        <img src={src(screen.file, 1440)} alt={screen.alt} width={1440} height={900} />
+        <img
+          src={src(screen.file, 1440)}
+          alt={screen.alt}
+          width={1440}
+          height={900}
+          loading="lazy"
+          decoding="async"
+        />
       </dialog>
     </figure>
   )

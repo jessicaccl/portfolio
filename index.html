@@ -21,6 +21,15 @@
       }
     </script>
     <title>Jessica Lima · PO técnica</title>
+    <!-- A foto do topo é o maior elemento da tela: começa a baixar antes do JavaScript -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/foto/jessica-lima-480.webp 480w, /foto/jessica-lima-640.webp 640w, /foto/jessica-lima-720.webp 720w, /foto/jessica-lima-960.webp 960w"
+      imagesizes="(min-width: 900px) 26rem, calc(100vw - 2.5rem)"
+      fetchpriority="high"
+    />
     <meta
       name="description"
       content="Product Owner que une negócio, tecnologia e qualidade. PO técnica: escrevo os critérios, testo, homologo com quem usa e monitoro depois da entrega."
