@@ -1,419 +1,117 @@
-/*
-  Cards iluminados, claros no modo claro e escuros no modo escuro.
-  Modo claro, sobre o card #fbf7f1: terracota 5,9:1 · texto secundário 9:1
-  Modo escuro, sobre o card #1d1b19: dourado 7,1:1 · texto creme 12:1 · contexto #b8ad9e 7,8:1
-*/
+/* Cada case é uma matéria: número, texto corrido e, ao lado, a tela real ou a frase que resume a decisão */
 .cases {
-  --cases-bg: var(--color-surface);
-  --card: #fbf7f1;
-  --card-border: rgb(201 162 39 / 45%);
-  --card-text: var(--color-text-muted);
-  --card-muted: var(--color-text-muted);
-  --card-label: var(--color-accent);
-  --art-bg: #efe5d6;
-  --art-grid: #e0d3bf;
-  --art-panel: #fbf7f1;
-  --art-line: #d9cfc1;
-
-  background: var(--cases-bg);
-  color: var(--color-text);
-}
-
-:root[data-theme='dark'] .cases {
-  --cases-bg: var(--color-ink);
-  --card: #1d1b19;
-  --card-border: rgb(201 162 39 / 22%);
-  --card-text: #d9cfc1;
-  --card-muted: #b8ad9e;
-  --card-label: var(--color-gold);
-  --art-bg: #24211e;
-  --art-grid: #3a352f;
-  --art-panel: #2e2a26;
-  --art-line: #4a443d;
-}
-
-.cases .section__eyebrow {
-  color: var(--card-label);
-}
-
-.cases .section__intro {
-  color: var(--card-text);
-}
-
-.cases :focus-visible {
-  outline-color: var(--card-label);
-}
-
-.cases__list {
-  margin: 2.5rem 0 0;
+  margin: 1rem 0 0;
   padding: 0;
   list-style: none;
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 900px) {
-  .cases__list {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 .case {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 1.25rem;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  transition:
-    transform 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out);
+  display: grid;
+  gap: 1.25rem;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--color-rule-soft);
 }
 
-/* Holofote que acompanha o cursor (posição vem de --x e --y) */
-.case::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-out);
-  background: radial-gradient(
-    26rem circle at var(--x, 50%) var(--y, 0%),
-    rgb(201 162 39 / 20%),
-    transparent 45%
-  );
+.cases > li:first-child .case {
+  border-top: 0;
 }
 
-/* Brilho e elevação só em dispositivos com mouse: no toque o hover ficaria preso */
-@media (hover: hover) {
-  .case:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 0 0 1px rgb(201 162 39 / 55%),
-      0 20px 60px -10px rgb(201 162 39 / 35%);
+@media (min-width: 900px) {
+  .case {
+    grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 2.5rem;
+    align-items: start;
   }
-
-  .case:hover::before {
-    opacity: 1;
-  }
-}
-
-.case__body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 .case__number {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.125rem;
-  color: var(--card-label);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--color-accent);
 }
 
 .case__title {
-  margin-top: 0.25rem;
-  font-size: 1.625rem;
+  font-size: clamp(1.875rem, 3.5vw, 2.375rem);
 }
 
 .case__context {
-  margin: 0.25rem 0 0;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--card-muted);
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
 }
 
-.case__details {
+/* Problema, papel e resultado com o rótulo em negrito no começo do parágrafo */
+.case__story {
   margin: 1.25rem 0 0;
   display: grid;
-  gap: 1rem;
-  flex: 1;
+  gap: 0.75rem;
 }
 
-.case__details dt {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--card-label);
+.case__story div {
+  line-height: 1.65;
 }
 
-.case__details dd {
-  margin: 0.25rem 0 0;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--card-text);
+.case__story dt {
+  display: inline;
+  font-weight: 600;
 }
 
-.case__tags {
-  margin: 1.5rem 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.case__story dt::after {
+  content: '. ';
 }
 
-.case__tags li {
-  padding: 0.25rem 0.75rem;
-  border: 1px solid rgb(201 162 39 / 45%);
-  border-radius: 999px;
-  font-size: 0.8125rem;
-  color: var(--card-text);
+.case__story dd {
+  display: inline;
+  margin: 0;
+  color: var(--color-text-muted);
 }
 
-/*
-  Ilustrações. As animações ficam paradas e só rodam enquanto o mouse ou o foco está no card,
-  para nada se mover sozinho por mais de 5 segundos (WCAG 2.2.2).
-*/
-.case-art {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-}
-
-.case-art__bg {
-  fill: var(--art-bg);
-}
-
-.case-art__grid {
-  stroke: var(--art-grid);
-  stroke-width: 1;
-}
-
-.case-art__panel {
-  fill: var(--art-panel);
-}
-
-.case-art__line {
-  fill: var(--art-line);
-}
-
-.case-art__route {
-  animation: case-route 3s linear infinite;
-}
-
-.case-art__ping {
-  animation: case-ping 2s ease-out infinite;
-}
-
-.case-art__bubble {
-  animation: case-float 3s ease-in-out infinite;
-}
-
-.case-art__route,
-.case-art__ping,
-.case-art__bubble,
-.case-art__card-move,
-.case-art__draw {
-  animation-play-state: paused;
-}
-
-.case:focus-within :is(.case-art__route, .case-art__ping, .case-art__bubble, .case-art__card-move, .case-art__draw) {
-  animation-play-state: running;
-}
-
-@media (hover: hover) {
-  .case:hover :is(.case-art__route, .case-art__ping, .case-art__bubble, .case-art__card-move, .case-art__draw) {
-    animation-play-state: running;
-  }
-}
-
-.case-art__bubble:nth-of-type(2) {
-  animation-delay: 0.5s;
-}
-
-.case-art__bubble:nth-of-type(3) {
-  animation-delay: 1s;
-}
-
-@keyframes case-route {
-  to {
-    stroke-dashoffset: -40;
-  }
-}
-
-@keyframes case-ping {
-  from {
-    r: 5;
-    opacity: 1;
-  }
-
-  to {
-    r: 18;
-    opacity: 0;
-  }
-}
-
-@keyframes case-float {
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .case,
-  .case:hover {
-    transform: none;
-  }
-
-  .case-art__route,
-  .case-art__ping,
-  .case-art__bubble {
-    animation: none;
-  }
-}
-
-/* Celular e tablet: carrossel com deslize lateral e a ponta do próximo card visível */
-.cases__hint {
-  display: none;
-}
-
-@media (max-width: 899px) {
-  .cases__hint {
-    display: flex;
-    gap: 0.5rem;
-    margin: 1.5rem 0 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--card-label);
-  }
-
-  .cases__list {
-    margin-top: 1rem;
-    margin-inline: calc(-1 * var(--space-gutter));
-    padding: 0.5rem var(--space-gutter) 1rem;
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--space-gutter);
-    scrollbar-width: none;
-  }
-
-  .cases__list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cases__list > li {
-    flex: 0 0 86%;
-    max-width: 24rem;
-    scroll-snap-align: start;
-  }
-
-  .case-art {
-    aspect-ratio: 16 / 8;
-  }
-
-  .case__body {
-    padding: 1.25rem;
-  }
-
-  .case__details {
-    gap: 0.75rem;
-  }
-}
-
-@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
-  .cases__hint span {
-    animation: cases-nudge 1.6s ease-in-out 3;
-  }
-}
-
-@keyframes cases-nudge {
-  50% {
-    transform: translateX(4px);
-  }
-}
-
-.case-art__card-move {
-  animation: case-card-move 4s ease-in-out infinite;
-}
-
-.case-art__draw {
-  stroke-dasharray: 320;
-  animation: case-draw 4s ease-in-out infinite;
-}
-
-@keyframes case-card-move {
-  0%,
-  30% {
-    transform: translate(0, 0);
-  }
-
-  60%,
-  100% {
-    transform: translate(90px, 34px);
-  }
-}
-
-@keyframes case-draw {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  25% {
-    stroke-dashoffset: 320;
-  }
-
-  85%,
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .case-art__card-move,
-  .case-art__draw {
-    animation: none;
-  }
-}
-
-/* Links da demo e do código, acima do holofote para continuarem clicáveis */
 .case__links {
-  position: relative;
-  z-index: 2;
   margin: 1.25rem 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 0.5rem 1.5rem;
 }
 
 .case__link {
   font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--card-label);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  text-underline-offset: 0.3em;
 }
 
 @media (hover: hover) {
   .case__link:hover {
-    border-bottom-width: 2px;
+    color: var(--color-accent);
   }
 }
 
-/* Print real da tela nos projetos autorais */
-.case__image {
+/* Tela real sobre uma base bege, com legenda */
+.case__figure {
+  margin: 0;
+  padding: 1rem;
+  background: var(--color-surface);
+}
+
+.case__figure img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top left;
-  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 18px 40px -24px rgb(20 20 20 / 45%);
 }
 
-@media (max-width: 899px) {
-  .case__image {
-    aspect-ratio: 16 / 8;
-  }
+.case__figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Nos cases sem tela, a decisão mais importante em destaque */
+.case__note {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--color-rule);
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  line-height: 1.3;
 }

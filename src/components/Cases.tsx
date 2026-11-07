@@ -1,132 +1,89 @@
-import { useSyncExternalStore, type PointerEvent } from 'react'
 import { caseStudies } from '../content/home'
-import { CaseArt } from './CaseArt'
 import { track } from '../lib/analytics'
 import { ExternalLink } from './ExternalLink'
 import './Cases.css'
 
-// Holofote dourado: guarda a posição do cursor no card para o gradiente do CSS.
-function followPointer(event: PointerEvent<HTMLElement>) {
-  const card = event.currentTarget
-  const rect = card.getBoundingClientRect()
-  card.style.setProperty('--x', `${event.clientX - rect.left}px`)
-  card.style.setProperty('--y', `${event.clientY - rect.top}px`)
-}
-
-// No celular os cases viram um carrossel; só então a lista precisa receber foco pelo teclado.
-const carouselQuery = '(max-width: 899px)'
-
-function subscribe(onChange: () => void) {
-  const media = window.matchMedia?.(carouselQuery)
-  media?.addEventListener('change', onChange)
-  return () => media?.removeEventListener('change', onChange)
-}
-
-function useIsCarousel() {
-  return useSyncExternalStore(
-    subscribe,
-    () => window.matchMedia?.(carouselQuery).matches ?? false,
-    () => false,
-  )
-}
-
 export function Cases() {
-  const isCarousel = useIsCarousel()
-
   return (
-    <section id="cases" className="cases" aria-labelledby="cases-title">
-      <div className="section">
-        <p className="section__eyebrow">Prova de produto</p>
+    <section id="cases" className="section" aria-labelledby="cases-title">
+      <div className="section__head">
         <h2 id="cases-title" className="section__title">
-          Cases em destaque
+          Cases
         </h2>
-        <p className="section__intro">
-          Na empresa, produtos em produção construídos com o time, com dados preservados por
-          confidencialidade. Nos projetos autorais, você pode abrir a demo e ver o código.
+        <p className="section__lede">
+          Na empresa, os dados são preservados por confidencialidade. Nos projetos autorais, dá para
+          abrir a demo e ver o código.
         </p>
+      </div>
 
-        <p className="cases__hint" aria-hidden="true">
-          Deslize para ver os {caseStudies.length} cases <span>→</span>
-        </p>
+      <ol className="cases">
+        {caseStudies.map((item, index) => (
+          <li key={item.title}>
+            <article className="case" aria-labelledby={`case-${index}`}>
+              <p className="case__number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </p>
 
-        <ol
-          className="cases__list"
-          aria-label={isCarousel ? 'Cases, deslize para o lado' : undefined}
-          tabIndex={isCarousel ? 0 : undefined}
-        >
-          {caseStudies.map((item, index) => (
-            <li key={item.title}>
-              <article className="case" aria-labelledby={`case-${index}`} onPointerMove={followPointer}>
-                {item.image ? (
+              <div className="case__body">
+                <h3 id={`case-${index}`} className="case__title">
+                  {item.title}
+                </h3>
+                <p className="case__context">{item.context}</p>
+
+                <dl className="case__story">
+                  <div>
+                    <dt>Problema</dt>
+                    <dd>{item.problem}</dd>
+                  </div>
+                  <div>
+                    <dt>Meu papel</dt>
+                    <dd>{item.role}</dd>
+                  </div>
+                  <div>
+                    <dt>Resultado</dt>
+                    <dd>{item.result}</dd>
+                  </div>
+                </dl>
+
+                {item.links && (
+                  <p className="case__links">
+                    {item.links.map((link) => (
+                      <ExternalLink
+                        key={link.href}
+                        href={link.href}
+                        className="case__link"
+                        onClick={() =>
+                          track('case_link_click', { case: item.title, link: link.label })
+                        }
+                      >
+                        {link.label}
+                        <span className="visually-hidden"> do {item.title}</span>{' '}
+                        <span aria-hidden="true">↗</span>
+                      </ExternalLink>
+                    ))}
+                  </p>
+                )}
+              </div>
+
+              {item.image ? (
+                <figure className="case__figure">
                   <img
-                    className="case__image"
-                    src={`/cases/${item.image.name}-640.webp`}
-                    srcSet={`/cases/${item.image.name}-640.webp 640w, /cases/${item.image.name}-1280.webp 1280w`}
-                    sizes="(min-width: 900px) 24rem, 86vw"
+                    src={item.image.src}
                     alt={item.image.alt}
-                    width={640}
-                    height={400}
+                    width={item.image.width}
+                    height={item.image.height}
                     loading="lazy"
                     decoding="async"
                   />
-                ) : (
-                  <CaseArt name={item.art} />
-                )}
-
-                <div className="case__body">
-                  <p className="case__number" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <h3 id={`case-${index}`} className="case__title">
-                    {item.title}
-                  </h3>
-                  <p className="case__context">{item.context}</p>
-
-                  <dl className="case__details">
-                    <div>
-                      <dt>Problema</dt>
-                      <dd>{item.problem}</dd>
-                    </div>
-                    <div>
-                      <dt>Meu papel</dt>
-                      <dd>{item.role}</dd>
-                    </div>
-                    <div>
-                      <dt>Resultado</dt>
-                      <dd>{item.result}</dd>
-                    </div>
-                  </dl>
-
-                  <ul className="case__tags" aria-label="Temas">
-                    {item.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-
-                  {item.links && (
-                    <p className="case__links">
-                      {item.links.map((link) => (
-                        <ExternalLink
-                          key={link.href}
-                          href={link.href}
-                          className="case__link"
-                          onClick={() =>
-                            track('case_link_click', { case: item.title, link: link.label })
-                          }
-                        >
-                          {link.label}
-                          <span className="visually-hidden"> do {item.title}</span>{' '}
-                          <span aria-hidden="true">↗</span>
-                        </ExternalLink>
-                      ))}
-                    </p>
-                  )}
-                </div>
-              </article>
-            </li>
-          ))}
-        </ol>
-      </div>
+                  <figcaption>{item.image.caption}</figcaption>
+                </figure>
+              ) : (
+                item.note && <blockquote className="case__note">{item.note}</blockquote>
+              )}
+            </article>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

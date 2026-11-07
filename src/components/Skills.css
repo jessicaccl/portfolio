@@ -1,95 +1,58 @@
+/* Uma linha por área: nome, competências em texto corrido e onde foram usadas */
 .skills {
-  margin: 2.5rem 0 0;
+  margin: 1.5rem 0 0;
   padding: 0;
   list-style: none;
+}
+
+.skills__row {
   display: grid;
-  gap: 1.25rem;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-rule-soft);
 }
 
-@media (min-width: 640px) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
+.skills__row:first-child {
+  border-top: 0;
+}
+
+@media (min-width: 900px) {
+  .skills__row {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: baseline;
   }
-}
-
-@media (min-width: 1024px) {
-  .skills {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.skills__group {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  background: var(--color-surface);
-  border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
-  transition:
-    border-color 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out);
-}
-
-@media (hover: hover) {
-  .skills__group:hover {
-    border-color: var(--color-gold);
-    box-shadow: 0 16px 40px -20px rgb(201 162 39 / 55%);
-  }
-}
-
-.skills__icon {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.875rem;
-  background: var(--color-gold);
-}
-
-.skills__icon svg {
-  width: 1.375rem;
-  height: 1.375rem;
-  fill: none;
-  stroke: var(--color-on-gold);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .skills__title {
-  margin-top: 1rem;
-  font-size: 1.375rem;
+  font-size: 1.5rem;
 }
 
+/* Itens separados por ponto médio, em texto corrido */
 .skills__list {
-  flex: 1;
-  align-content: flex-start;
-  margin: 1rem 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  line-height: 1.7;
 }
 
 .skills__list li {
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--color-text-muted) 45%, transparent);
-  font-size: 0.8125rem;
-  color: var(--color-text);
+  display: inline;
+}
+
+.skills__list li + li::before {
+  content: ' · ';
+  color: var(--color-accent);
 }
 
 .skills__evidence {
-  margin: 1.25rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
-  font-size: 0.875rem;
-  line-height: 1.5;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
   color: var(--color-text-muted);
 }
 
 .skills__evidence span {
-  font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-text);
+  font-weight: 600;
 }

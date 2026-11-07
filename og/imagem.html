@@ -50,17 +50,9 @@
         margin: 0 0 28px;
         font-size: 20px;
         font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
         color: #a04a26;
       }
 
-      .eyebrow::before {
-        content: '';
-        width: 48px;
-        height: 2px;
-        background: #c9a227;
-      }
 
       h1 {
         margin: 0;
@@ -87,11 +79,13 @@
         font-size: 34px;
       }
 
-      .name span {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #c9a227;
+      .rule {
+        position: absolute;
+        left: 80px;
+        right: 450px;
+        bottom: 128px;
+        height: 1px;
+        background: #141414;
       }
 
       .portrait {
@@ -102,13 +96,6 @@
         height: 490px;
       }
 
-      .portrait::before {
-        content: '';
-        position: absolute;
-        inset: 16px -16px -16px 16px;
-        border: 2px solid #c9a227;
-        border-radius: 999px 999px 0 0;
-      }
 
       .portrait img {
         position: relative;
@@ -116,27 +103,18 @@
         height: 100%;
         object-fit: cover;
         object-position: center top;
-        border-radius: 999px 999px 0 0;
+        filter: grayscale(1);
       }
 
-      .dots {
-        position: absolute;
-        right: 350px;
-        bottom: 90px;
-        width: 96px;
-        height: 96px;
-        background-image: radial-gradient(#c9a227 2px, transparent 2px);
-        background-size: 16px 16px;
-      }
     </style>
   </head>
   <body>
     <div class="text">
-      <p class="eyebrow">Produto · Qualidade · IA</p>
-      <h1>Product Owner que une negócio, tecnologia e <em>qualidade.</em></h1>
+      <p class="eyebrow">Produto, qualidade de software e desenvolvimento com IA</p>
+      <h1>Product Owner que une negócio, tecnologia e qualidade.</h1>
     </div>
-    <p class="name">Jessica Lima<span></span></p>
-    <div class="dots"></div>
+    <div class="rule"></div>
+    <p class="name">Jessica Lima</p>
     <div class="portrait"><img src="../public/foto/jessica-lima-960.webp" alt="" /></div>
   </body>
 </html>

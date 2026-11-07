@@ -1,18 +1,26 @@
-/* Claro no modo claro e escuro no modo escuro, como o resto da página */
+/* Fechamento: fio forte, título grande e as mesmas ações do topo */
 .contact {
-  background: var(--color-surface);
-  border-top: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
-  padding: 5rem var(--space-gutter);
-  text-align: center;
+  max-width: var(--max-width);
+  margin: 6rem auto 0;
+  padding: 0 var(--space-gutter) 5rem;
+}
+
+.contact > * {
+  max-width: 46rem;
 }
 
 .contact__title {
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-rule);
+  max-width: none;
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .contact__text {
-  margin: 1.25rem auto 0;
-  max-width: 50ch;
+  margin: 1.5rem 0 0;
+  font-size: 1.125rem;
   color: var(--color-text-muted);
 }
 
@@ -20,6 +28,6 @@
   margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
 }

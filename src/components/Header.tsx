@@ -36,7 +36,6 @@ export function Header() {
       <div className="header__inner">
         <a href="#inicio" className="header__brand">
           {profile.name}
-          <span aria-hidden="true" className="header__dot" />
         </a>
 
         <div className="header__actions">

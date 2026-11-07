@@ -68,7 +68,7 @@ test.describe('menu no celular (US10)', () => {
     await nav.getByRole('button', { name: 'Menu' }).click()
     await nav.getByRole('link', { name: 'Cases' }).click()
 
-    await expect(page.getByRole('heading', { name: 'Cases em destaque' })).toBeInViewport()
+    await expect(page.getByRole('heading', { name: 'Cases', exact: true })).toBeInViewport()
     await expect(nav.getByRole('link', { name: 'Cases' })).toBeHidden()
   })
 
@@ -95,26 +95,6 @@ test.describe('menu no desktop (US10)', () => {
 
     await nav.getByRole('link', { name: 'Trajetória' }).click()
     await expect(page.getByRole('heading', { name: 'Do varejo ao produto digital' })).toBeInViewport()
-  })
-})
-
-test.describe('cases no celular', () => {
-  test.use({ viewport: { width: 360, height: 740 } })
-
-  test('viram um carrossel lateral que dá para percorrer até o último case', async ({ page }) => {
-    await page.goto('/')
-    const carousel = page.getByRole('list', { name: 'Cases, deslize para o lado' })
-    await carousel.scrollIntoViewIfNeeded()
-
-    const first = page.getByRole('heading', { name: 'Plataforma de rastreamento' })
-    const last = page.getByRole('heading', { name: 'Loja Irmãs Amare' })
-    await expect(first).toBeInViewport()
-    await expect(last).not.toBeInViewport()
-
-    await carousel.evaluate((list) => list.scrollTo({ left: list.scrollWidth }))
-    await expect(last).toBeInViewport()
-    const overflow = await page.evaluate("document.documentElement.scrollWidth > window.innerWidth")
-    expect(overflow).toBe(false)
   })
 })
 
@@ -194,12 +174,11 @@ test.describe('foco e movimento', () => {
     }
   })
 
-  test('as ilustrações não se movem sozinhas (WCAG 2.2.2)', async ({ page }) => {
+  test('nada se move sozinho na página (WCAG 2.2.2)', async ({ page }) => {
     await page.goto('/')
-    const states: string[] = await page.evaluate(
-      `[...document.querySelectorAll('.case-art__route, .case-art__ping, .case-art__bubble')].map((el) => getComputedStyle(el).animationPlayState)`,
+    const running: string[] = await page.evaluate(
+      `document.getAnimations().filter((a) => a.playState === 'running' && a.effect && a.effect.getTiming().iterations === Infinity).map((a) => a.animationName || 'animação')`,
     )
-    expect(states.length).toBeGreaterThan(0)
-    expect(new Set(states)).toEqual(new Set(['paused']))
+    expect(running).toEqual([])
   })
 })

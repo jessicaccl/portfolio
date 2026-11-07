@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { HowIWork } from './HowIWork'
 
 describe('Como eu trabalho (US08)', () => {
-  it('mostra as 8 etapas em ordem, cada uma com uma descrição', () => {
+  it('mostra as 8 etapas do registro em ordem, cada uma com uma descrição', () => {
     render(<HowIWork />)
 
-    const steps = screen.getAllByRole('listitem')
+    const steps = within(screen.getByRole('list')).getAllByRole('listitem')
     expect(steps.map((step) => within(step).getByRole('heading').textContent)).toEqual([
       'Demanda',
       'História',
@@ -22,22 +22,17 @@ describe('Como eu trabalho (US08)', () => {
     }
   })
 
-  it('separa onde a IA ajuda de onde a validação é humana, com numeração contínua', () => {
+  it('diz em texto onde a IA ajuda e onde quem decide são as pessoas', () => {
     render(<HowIWork />)
 
-    const [ai, human] = screen.getAllByRole('list')
-    expect(screen.getByRole('heading', { level: 3, name: 'Com apoio de IA' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 3, name: 'Validação humana' })).toBeInTheDocument()
-    expect(within(ai).getAllByRole('listitem')).toHaveLength(5)
-    expect(within(human).getAllByRole('listitem')).toHaveLength(3)
-    expect(human).toHaveAttribute('start', '6')
+    expect(screen.getAllByText('com IA')).toHaveLength(5)
+    expect(screen.getAllByText('pessoas decidem')).toHaveLength(3)
   })
 
   it('traz o aprendizado de que nenhuma etapa é opcional', () => {
     render(<HowIWork />)
 
-    const quote = screen.getByRole('blockquote')
-    expect(quote).toHaveTextContent(
+    expect(screen.getByRole('blockquote')).toHaveTextContent(
       'Bugs aparecem quando uma etapa é pulada. Por isso, nenhuma etapa é opcional.',
     )
   })

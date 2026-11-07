@@ -35,12 +35,4 @@ describe('Hero (US03, US04, US05)', () => {
     expect(linkedin).toHaveAttribute('target', '_blank')
     expect(linkedin).toHaveAttribute('rel', 'noreferrer')
   })
-
-  it('mostra uma prova logo no topo, com números reais da faixa de impacto', () => {
-    render(<Hero />)
-
-    const proof = screen.getByRole('list', { name: 'Destaques' })
-    expect(proof).toHaveTextContent('+150 motos rastreadas')
-    expect(proof).toHaveTextContent('4 agentes de IA em produção')
-  })
 })

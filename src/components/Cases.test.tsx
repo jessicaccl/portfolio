@@ -5,7 +5,7 @@ import { Cases } from './Cases'
 function companyCases() {
   return screen
     .getAllByRole('article')
-    .filter((card) => within(card).queryByText('Locadora de motos'))
+    .filter((card) => within(card).queryByText(/locadora de motos/i))
 }
 
 describe('Cases em destaque (US07)', () => {
@@ -14,11 +14,11 @@ describe('Cases em destaque (US07)', () => {
 
     const cards = screen.getAllByRole('article')
     expect(cards.map((card) => within(card).getByRole('heading').textContent)).toEqual([
-      'Plataforma de rastreamento',
-      'ERP de locação',
-      'Agentes de IA no atendimento',
       'CRM Pro',
+      'Plataforma de rastreamento',
       'Assina+',
+      'Agentes de IA no atendimento',
+      'ERP de locação',
       'Loja Irmãs Amare',
     ])
     for (const card of cards) {
@@ -40,7 +40,7 @@ describe('Cases em destaque (US07)', () => {
   it('respeita a confidencialidade: sem nome da empresa, valores ou percentuais', () => {
     render(<Cases />)
 
-    const text = screen.getByRole('region', { name: 'Cases em destaque' }).textContent
+    const text = screen.getByRole('region', { name: 'Cases' }).textContent
     expect(text).not.toMatch(/maturano|fast motos|R\$|%/i)
   })
 
@@ -72,5 +72,14 @@ describe('Cases em destaque (US07)', () => {
 
     expect(screen.getByRole('img', { name: /crm pro, com dados de demonstração/i })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /assina\+, com dados de demonstração/i })).toBeInTheDocument()
+  })
+
+  it('sem tela real, o case mostra a decisão mais importante em destaque, sem desenho de produto', () => {
+    render(<Cases />)
+
+    for (const card of companyCases()) {
+      expect(within(card).getByRole('blockquote')).not.toBeEmptyDOMElement()
+      expect(card.querySelector('svg')).toBeNull()
+    }
   })
 })

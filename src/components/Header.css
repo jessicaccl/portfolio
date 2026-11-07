@@ -4,7 +4,6 @@
   z-index: 5;
   background: color-mix(in srgb, var(--color-bg) 94%, transparent);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid transparent;
 }
 
 .header__inner {
@@ -16,6 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  border-bottom: 1px solid var(--color-rule);
 }
 
 .header__brand {
@@ -23,16 +23,9 @@
   align-items: baseline;
   gap: 0.25rem;
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-text);
   text-decoration: none;
-}
-
-.header__dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--color-gold);
 }
 
 .nav a {
@@ -56,8 +49,7 @@
 .nav__toggle {
   min-height: 2.75rem;
   padding: 0.5rem 1rem;
-  border: 1.5px solid var(--color-text);
-  border-radius: 999px;
+  border: 1px solid var(--color-rule);
   background: transparent;
   color: var(--color-text);
   font: inherit;
@@ -81,7 +73,7 @@
     gap: 1.5rem;
     padding: 1.5rem var(--space-gutter) 2rem;
     background: var(--color-bg);
-    border-bottom: 1px solid var(--color-gold);
+    border-bottom: 1px solid var(--color-rule);
     box-shadow: 0 12px 24px rgb(20 20 20 / 8%);
   }
 
@@ -119,7 +111,7 @@
 
   .nav__external {
     padding-left: 2rem;
-    border-left: 1px solid var(--color-gold);
+    border-left: 1px solid var(--color-rule-soft);
   }
 }
 
@@ -135,8 +127,7 @@
   width: 2.75rem;
   height: 2.75rem;
   padding: 0;
-  border: 1.5px solid var(--color-text);
-  border-radius: 50%;
+  border: 1px solid var(--color-rule-soft);
   background: transparent;
   color: var(--color-text);
   cursor: pointer;

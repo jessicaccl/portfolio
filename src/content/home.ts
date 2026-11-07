@@ -1,31 +1,13 @@
-import type { CaseArtName } from '../components/CaseArt'
-
 // Conteúdo da home. Regras (PRD, seção 9): nada de valor financeiro, percentual de custo,
-// nome de cliente ou da empresa nos cases; sempre "o time" e um bloco "Meu papel".
+// nome de cliente ou da empresa nos cases; nos cases da empresa, sempre "o time".
 
-export type ImpactStat = { value: string; label: string; detail: string }
+export type ImpactStat = { value: string; label: string }
 
 export const impactStats: ImpactStat[] = [
-  {
-    value: '+150',
-    label: 'motos rastreadas',
-    detail: 'por uma plataforma própria, com bloqueio seguro e cerca virtual',
-  },
-  {
-    value: '4',
-    label: 'agentes de IA em produção',
-    detail: 'em venda, locação, financeiro e pós-venda, monitorados todo dia',
-  },
-  {
-    value: '3 em 1',
-    label: 'PO, dev e QA',
-    detail: 'no mesmo produto, da demanda ao monitoramento',
-  },
-  {
-    value: '10 anos',
-    label: 'à frente de um negócio',
-    detail: 'uma loja de moda própria, com mentalidade de dono',
-  },
+  { value: '+150', label: 'motos numa plataforma de rastreamento própria' },
+  { value: '4', label: 'agentes de IA em produção, monitorados todo dia' },
+  { value: '89', label: 'testes automatizados no Assina+' },
+  { value: '10 anos', label: 'à frente de um negócio próprio' },
 ]
 
 export type CaseStudy = {
@@ -34,47 +16,14 @@ export type CaseStudy = {
   problem: string
   role: string
   result: string
-  tags: string[]
-  art: CaseArtName
   links?: { label: string; href: string }[]
-  // Print real da tela (só em projetos autorais, com dados de demonstração)
-  image?: { name: string; alt: string }
+  // Tela real (só em projetos autorais, com dados de demonstração)
+  image?: { src: string; width: number; height: number; alt: string; caption: string }
+  // Nos cases sem tela, uma frase que resume a decisão mais importante
+  note?: string
 }
 
 export const caseStudies: CaseStudy[] = [
-  {
-    title: 'Plataforma de rastreamento',
-    context: 'Locadora de motos',
-    problem:
-      'A plataforma terceirizada era cara e instável, e a operação não podia confiar na localização da frota.',
-    role: 'Auxiliei na descoberta da conexão dos rastreadores com a rede e fiz a migração da frota, veículo a veículo.',
-    result:
-      'Construímos uma plataforma própria para mais de 150 motos, com bloqueio automático de inadimplentes (nunca com a moto em movimento), cerca virtual e custo menor de rastreamento.',
-    tags: ['Migração', 'Regras de negócio', 'Operação'],
-    art: 'tracking',
-  },
-  {
-    title: 'ERP de locação',
-    context: 'Locadora de motos',
-    problem:
-      'Gestão e operação trazem demandas todos os dias para o sistema que sustenta contratos, manutenção, estoque e financeiro.',
-    role: 'Levanto e especifico as demandas, desenvolvo melhorias e novas funcionalidades com IA e valido cada entrega contra os critérios de aceite.',
-    result:
-      'O time evolui continuamente os módulos operacional, gerencial e financeiro, com pagamentos integrados e baixa automática, assinatura digital de contratos e consulta de infrações.',
-    tags: ['Discovery', 'Critérios de aceite', 'Testes de regressão'],
-    art: 'erp',
-  },
-  {
-    title: 'Agentes de IA no atendimento',
-    context: 'Locadora de motos',
-    problem:
-      'Cobrança, atendimento financeiro e pós-venda precisavam de resposta rápida, sem sobrecarregar a equipe.',
-    role: 'Desenvolvo e monitoro os agentes todos os dias, definindo até onde a IA vai e em que momento a equipe assume.',
-    result:
-      'Colocamos em produção agentes de venda, locação, financeiro e pós-venda. O de cobrança negocia com clientes em atraso e aciona a equipe quando há acordo.',
-    tags: ['IA aplicada', 'Monitoramento', 'Humano no controle'],
-    art: 'agents',
-  },
   {
     title: 'CRM Pro',
     context: 'Projeto autoral · no ar',
@@ -83,13 +32,27 @@ export const caseStudies: CaseStudy[] = [
     role: 'Fiz o discovery, o roadmap em 7 fases e as histórias com critérios de aceite, e desenvolvi o sistema do banco ao deploy.',
     result:
       'No ar com funil em Kanban, painel de resultados, ficha do cliente e multiempresa. Já recebe leads reais de um quiz de diagnóstico, por webhook.',
-    tags: ['Roadmap em fases', 'Multiempresa', 'Integração por webhook'],
-    art: 'crm',
-    image: { name: 'crm-pro', alt: 'Painel de resultados do CRM Pro, com dados de demonstração' },
+    image: {
+      src: '/cases/crm-pro-detalhe.webp',
+      width: 575,
+      height: 359,
+      alt: 'Indicadores e receita por mês no painel do CRM Pro, com dados de demonstração',
+      caption: 'Painel de resultados: ciclo de venda, previsão e receita por mês (dados de demonstração).',
+    },
     links: [
       { label: 'Ver demo', href: 'https://crm-pro-jessica.vercel.app' },
       { label: 'Ver código', href: 'https://github.com/jessicaccl/crm-frontend' },
     ],
+  },
+  {
+    title: 'Plataforma de rastreamento',
+    context: 'Locadora de motos · com o time',
+    problem:
+      'A plataforma terceirizada era cara e instável, e a operação não podia confiar na localização da frota.',
+    role: 'Auxiliei na descoberta da conexão dos rastreadores com a rede e fiz a migração da frota, veículo a veículo.',
+    result:
+      'Construímos uma plataforma própria para mais de 150 motos, com bloqueio automático de inadimplentes, cerca virtual e custo menor de rastreamento.',
+    note: '“Bloquear o inadimplente, nunca com a moto em movimento.” A regra de negócio mais importante virou critério de aceite.',
   },
   {
     title: 'Assina+',
@@ -99,9 +62,13 @@ export const caseStudies: CaseStudy[] = [
     role: 'Defini as regras de cobrança e de provisão, escrevi os critérios de aceite e desenvolvi a API e a interface com testes automatizados.',
     result:
       'Painel com receita recorrente, previsão, aging e provisão por faixa de atraso, lembretes automáticos por e-mail e 89 testes automatizados.',
-    tags: ['Regras de negócio', 'Indicadores financeiros', 'Testes automatizados'],
-    art: 'subscriptions',
-    image: { name: 'assina-mais', alt: 'Tela de provisões de pagamento do Assina+, com dados de demonstração' },
+    image: {
+      src: '/cases/assina-mais-detalhe.webp',
+      width: 760,
+      height: 475,
+      alt: 'Receita recorrente e previsão de recebimentos no Assina+, com dados de demonstração',
+      caption: 'Provisões: receita recorrente, a receber e previsão por mês (dados de demonstração).',
+    },
     links: [
       {
         label: 'Ver código',
@@ -110,67 +77,81 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    title: 'Agentes de IA no atendimento',
+    context: 'Locadora de motos · com o time',
+    problem:
+      'Cobrança, atendimento financeiro e pós-venda precisavam de resposta rápida, sem sobrecarregar a equipe.',
+    role: 'Desenvolvo e monitoro os agentes todos os dias, definindo até onde a IA vai e em que momento a equipe assume.',
+    result:
+      'Colocamos em produção agentes de venda, locação, financeiro e pós-venda. O de cobrança negocia com clientes em atraso e aciona a equipe quando há acordo.',
+    note: 'A IA atende, cobra e agenda. Quando o cliente propõe um acordo, quem assume é uma pessoa.',
+  },
+  {
+    title: 'ERP de locação',
+    context: 'Locadora de motos · com o time',
+    problem:
+      'Gestão e operação trazem demandas todos os dias para o sistema que sustenta contratos, manutenção, estoque e financeiro.',
+    role: 'Levanto e especifico as demandas, desenvolvo melhorias e novas funcionalidades com IA e valido cada entrega contra os critérios de aceite.',
+    result:
+      'O time evolui continuamente os módulos operacional, gerencial e financeiro, com pagamentos integrados e baixa automática, assinatura digital de contratos e consulta de infrações.',
+    note: 'Nenhuma melhoria vai ao ar sem passar pelos critérios de aceite e pelo teste de regressão.',
+  },
+  {
     title: 'Loja Irmãs Amare',
     context: 'Negócio próprio · em lançamento',
     problem:
       'Depois de 10 anos de loja física, a marca precisava vender online sem depender de plataforma pronta e sem perder o atendimento próximo.',
     role: 'Sou PO, QA e desenvolvedora: cortei o escopo para lançar em 15 dias, desenhei o checkout e testei a compra de ponta a ponta.',
     result:
-      'Loja com vitrine, "compre o look", checkout com Pix, cartão e boleto, cálculo de frete, painel de pedidos e estoque e área da cliente.',
-    tags: ['MVP em 15 dias', 'Checkout e pagamentos', 'Negócio real'],
-    art: 'store',
+      'Loja com vitrine, “compre o look”, checkout com Pix, cartão e boleto, cálculo de frete, painel de pedidos e estoque e área da cliente.',
+    note: 'Lançar em 15 dias foi, antes de tudo, decidir o que ficava de fora.',
   },
 ]
 
-export type WorkStep = { title: string; description: string }
+export type WorkStep = { title: string; description: string; by: 'IA' | 'pessoas' }
 
-export type WorkPhase = { title: string; description: string; steps: WorkStep[] }
-
-// O método em dois blocos: onde a IA acelera e onde a decisão é das pessoas.
-export const workPhases: WorkPhase[] = [
+// O registro do método: a mesma sequência para toda demanda.
+// A IA acelera as cinco primeiras etapas; nas três últimas, quem decide são as pessoas.
+export const workLog: WorkStep[] = [
   {
-    title: 'Com apoio de IA',
-    description: 'A IA acelera a análise, a escrita e o código. Eu reviso tudo antes de seguir.',
-    steps: [
-      {
-        title: 'Demanda',
-        description: 'Escuto gestão e operação para entender o problema antes da solução.',
-      },
-      {
-        title: 'História',
-        description: 'Transformo a necessidade em história de usuário, com o valor para quem usa.',
-      },
-      {
-        title: 'Critérios de aceite',
-        description: 'Defino como saberemos que está pronto, incluindo os cenários de erro.',
-      },
-      {
-        title: 'Desenvolvimento',
-        description: 'Prototipo e desenvolvo com o time, sem perder o controle do que entra.',
-      },
-      {
-        title: 'Teste',
-        description: 'Valido contra os critérios e faço testes de regressão no que já funcionava.',
-      },
-    ],
+    title: 'Demanda',
+    description: 'Escuto gestão e operação para entender o problema antes da solução.',
+    by: 'IA',
   },
   {
-    title: 'Validação humana',
-    description: 'Aqui quem decide é quem usa: nada vai ao ar sem passar pelas pessoas.',
-    steps: [
-      {
-        title: 'Homologação',
-        description: 'Quem vai usar testa antes de ir ao ar. O "funciona" é deles, não só meu.',
-      },
-      {
-        title: 'Produção',
-        description: 'Publico com cuidado e comunico o que mudou para quem usa.',
-      },
-      {
-        title: 'Monitoramento',
-        description: 'Acompanho depois da entrega e trato bugs até a resolução.',
-      },
-    ],
+    title: 'História',
+    description: 'Transformo a necessidade em história de usuário, com o valor para quem usa.',
+    by: 'IA',
+  },
+  {
+    title: 'Critérios de aceite',
+    description: 'Defino como saberemos que está pronto, incluindo os cenários de erro.',
+    by: 'IA',
+  },
+  {
+    title: 'Desenvolvimento',
+    description: 'Prototipo e desenvolvo com o time, sem perder o controle do que entra.',
+    by: 'IA',
+  },
+  {
+    title: 'Teste',
+    description: 'Valido contra os critérios e faço testes de regressão no que já funcionava.',
+    by: 'IA',
+  },
+  {
+    title: 'Homologação',
+    description: 'Quem vai usar testa antes de ir ao ar. O “funciona” é deles, não só meu.',
+    by: 'pessoas',
+  },
+  {
+    title: 'Produção',
+    description: 'Publico com cuidado e comunico o que mudou para quem usa.',
+    by: 'pessoas',
+  },
+  {
+    title: 'Monitoramento',
+    description: 'Acompanho depois da entrega e trato bugs até a resolução.',
+    by: 'pessoas',
   },
 ]
 
@@ -224,24 +205,21 @@ export const career: CareerStep[] = [
   },
 ]
 
+// A primeira frase abre a seção em destaque; o resto corre em colunas.
+export const aboutOpening = 'No dia a dia, transito entre produto, desenvolvimento e qualidade.'
+
 export const about: string[] = [
-  'No dia a dia, transito entre produto, desenvolvimento e qualidade. Levanto as demandas com gestão e operação, transformo em histórias com critérios de aceite claros, desenvolvo com IA junto com o time e só considero pronto o que foi testado e homologado por quem vai usar.',
+  'Levanto as demandas com gestão e operação, transformo em histórias com critérios de aceite claros, desenvolvo com IA junto com o time e só considero pronto o que foi testado e homologado por quem vai usar.',
   'Antes da tecnologia, passei dez anos à frente da minha própria loja de moda. Foi ali que aprendi a ouvir o cliente, cuidar dos números e decidir com mentalidade de dono, e é isso que levo para cada produto.',
   'Hoje sigo investindo no próximo passo: pós-graduações em Gestão de Projetos em TI e em Inteligência Artificial Generativa, e mentoria com foco na certificação PSPO.',
 ]
 
-export type SkillGroup = {
-  title: string
-  icon: 'product' | 'quality' | 'front' | 'back' | 'ai' | 'agile'
-  skills: string[]
-  evidence: string
-}
+export type SkillGroup = { title: string; skills: string[]; evidence: string }
 
 // Competências comprovadas no trabalho e nos repositórios públicos (github.com/jessicaccl).
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Produto e requisitos',
-    icon: 'product',
     skills: [
       'Discovery',
       'Requisitos funcionais e não funcionais',
@@ -254,7 +232,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Qualidade e testes',
-    icon: 'quality',
     skills: [
       'Testes funcionais e de regressão',
       'Homologação com o usuário',
@@ -264,11 +241,10 @@ export const skillGroups: SkillGroup[] = [
       'Acessibilidade (WCAG, axe)',
       'CI com GitHub Actions',
     ],
-    evidence: 'Portfólio, Assina+ e CRM de Vendas',
+    evidence: 'Portfólio, Assina+ e CRM Pro',
   },
   {
     title: 'Front-end',
-    icon: 'front',
     skills: [
       'React',
       'TypeScript',
@@ -278,11 +254,10 @@ export const skillGroups: SkillGroup[] = [
       'React Hook Form e Zod',
       'Tailwind CSS',
     ],
-    evidence: 'CRM de Vendas, Assina+ e sites para clientes',
+    evidence: 'CRM Pro, Assina+ e sites para clientes',
   },
   {
     title: 'Back-end e APIs',
-    icon: 'back',
     skills: [
       'Java e Spring Boot',
       'C# e .NET',
@@ -292,11 +267,10 @@ export const skillGroups: SkillGroup[] = [
       'RabbitMQ',
       'Docker',
     ],
-    evidence: 'CRM de Vendas e Assina+',
+    evidence: 'CRM Pro e Assina+',
   },
   {
     title: 'IA e automação',
-    icon: 'ai',
     skills: [
       'Claude Code',
       'Lovable',
@@ -310,7 +284,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Agilidade e negócio',
-    icon: 'agile',
     skills: ['Scrum', 'Kanban', 'ClickUp', 'Azure DevOps', 'Jira', 'KPIs e ROI'],
     evidence: 'Locadora de motos, formação na FEST e 10 anos de negócio próprio',
   },

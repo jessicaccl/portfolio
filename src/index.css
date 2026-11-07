@@ -1,30 +1,31 @@
 /*
-  Tokens de design.
-  Contraste medido sobre o fundo bege (WCAG 2.1 AA pede 4,5:1 para texto normal):
-  - texto preto ........ 16,9:1
-  - terracota ........... 5,1:1  (o tom #B5562F dava 4,1:1 e foi escurecido)
-  - dourado ............. 2,1:1  -> só decorativo ou como fundo de botão com texto preto (8,7:1)
-  Modo escuro, sobre #171513: creme 15,4:1 · texto secundário 9,2:1 · terracota clara 6,9:1 · dourado 7,6:1
+  Sistema editorial: a página lê como uma revista. Estrutura por fios finos e tipografia,
+  sem cards, sem pílulas e sem degradês. Um único momento de movimento (a frase do método).
+
+  Contraste sobre o fundo bege (WCAG 2.1 AA pede 4,5:1 para texto normal):
+  - texto preto 16,9:1 · texto secundário 8,2:1 · terracota 5,1:1
+  Modo escuro, sobre #171513: creme 15,4:1 · texto secundário 9,2:1 · terracota clara 6,9:1
   O tema vem de data-theme no <html>, definido antes do React carregar (index.html).
 */
 :root {
   --color-bg: #f3ece2;
-  --color-surface: #ebe1d3;
+  --color-surface: #e9dfd0;
   --color-text: #141414;
   --color-text-muted: #4a443d;
   --color-accent: #a04a26;
   --color-gold: #c9a227;
-  /* Fundo das faixas escuras (cases, contato, rodapé) e texto sobre o dourado */
+  /* Fios: o forte separa seções, o suave separa itens dentro delas */
+  --color-rule: #141414;
+  --color-rule-soft: #d6cab9;
+  /* Fundo das faixas escuras do modo escuro */
   --color-ink: #141414;
-  --color-on-gold: #141414;
-  /* Números de impacto: degradê com contraste de texto grande (3:1) nas duas pontas */
-  --gradient-impact: linear-gradient(120deg, #a04a26, #8a6d12);
 
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
 
-  --space-gutter: 1rem;
-  --max-width: 72rem;
+  --space-gutter: 1.25rem;
+  --max-width: 76rem;
 
   /* Curva única de movimento: desacelera até parar */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -32,14 +33,21 @@
   color-scheme: light;
 }
 
+@media (min-width: 900px) {
+  :root {
+    --space-gutter: 3rem;
+  }
+}
+
 :root[data-theme='dark'] {
   --color-bg: #171513;
-  --color-surface: #221f1c;
+  --color-surface: #211e1b;
   --color-text: #f3ece2;
   --color-text-muted: #c2b8aa;
   --color-accent: #e08a5f;
+  --color-rule: #f3ece2;
+  --color-rule-soft: #3b3631;
   --color-ink: #0d0c0b;
-  --gradient-impact: linear-gradient(120deg, #c9a227, #e08a5f);
 
   color-scheme: dark;
 }
@@ -75,21 +83,16 @@ body {
 
 h1,
 h2,
-h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.15;
-  margin: 0;
-}
-
-/* Sem palavra sozinha na última linha */
-h1,
-h2,
 h3,
 h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
   text-wrap: balance;
 }
 
+/* Sem palavra sozinha na última linha */
 p,
 li,
 dd {
@@ -97,16 +100,23 @@ dd {
 }
 
 a {
-  color: var(--color-accent);
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-text);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 
 main:focus {
   outline: none;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #141414;
 }
 
 .visually-hidden {
@@ -135,49 +145,50 @@ main:focus {
   transform: none;
 }
 
-/* Botões (links com aparência de botão) */
+/* Ações: um botão sólido para a ação principal e links sublinhados para as demais */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0.75rem 1.5rem;
-  border: 1.5px solid transparent;
-  border-radius: 999px;
+  padding: 0.75rem 1.375rem;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
   transition:
     background-color 0.2s var(--ease-out),
     color 0.2s var(--ease-out),
-    border-color 0.2s var(--ease-out),
     transform 0.15s ease-out;
 }
 
 .btn--primary {
-  background: var(--color-gold);
-  color: var(--color-on-gold);
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .btn--secondary {
-  border-color: var(--color-text);
+  min-height: 3rem;
+  padding-inline: 0.25rem;
   color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
 }
 
 @media (hover: hover) {
   .btn--primary:hover {
-    background: #b8911d;
+    background: var(--color-accent);
+    color: var(--color-bg);
   }
 
   .btn--secondary:hover {
-    background: var(--color-text);
-    color: var(--color-bg);
+    color: var(--color-accent);
   }
 }
 
 /* Resposta física ao clicar ou tocar */
 @media (prefers-reduced-motion: no-preference) {
-  .btn:active,
+  .btn--primary:active,
   .theme-toggle:active,
   .nav__toggle:active {
     transform: scale(0.96);
@@ -189,40 +200,26 @@ main:focus {
   line-height: 1;
 }
 
-/* Seções da home */
+/* Seções: abrem com um fio forte e o título; o resto da hierarquia vem da tipografia */
 .section {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 5rem var(--space-gutter);
+  padding: 4.5rem var(--space-gutter) 0;
 }
 
-.section__eyebrow {
-  margin: 0 0 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.section__eyebrow::before {
-  content: '';
-  width: 2rem;
-  height: 1px;
-  background: var(--color-gold);
+.section__head {
+  border-top: 1px solid var(--color-rule);
+  padding-top: 1.25rem;
 }
 
 .section__title {
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  letter-spacing: -0.01em;
 }
 
-.section__intro {
+.section__lede {
   margin: 1rem 0 0;
-  max-width: 52ch;
-  font-size: 1.0625rem;
+  max-width: 58ch;
+  font-size: 1.125rem;
   color: var(--color-text-muted);
 }
-
