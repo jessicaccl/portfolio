@@ -2,13 +2,12 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 
-// Endereço público do site para a prévia de compartilhamento. A Netlify define URL e a
-// Vercel define VERCEL_PROJECT_PRODUCTION_URL no build;
-// SITE_URL permite sobrescrever (ex.: domínio próprio). Sem nenhum dos dois, os links ficam relativos.
+// Endereço público do site para a prévia de compartilhamento. A Vercel define
+// VERCEL_PROJECT_PRODUCTION_URL no build; SITE_URL permite sobrescrever (ex.: domínio próprio).
+// Sem nenhum dos dois, os links ficam relativos.
 const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 const siteUrl = (
   process.env.SITE_URL ??
-  process.env.URL ??
   (vercelUrl ? `https://${vercelUrl}` : '')
 ).replace(/\/$/, '')
 
@@ -22,7 +21,7 @@ function siteUrlPlugin(): Plugin {
   }
 }
 
-// Analytics opcional: com PLAUSIBLE_DOMAIN definido no build (ex.: na Netlify), o script do
+// Analytics opcional: com PLAUSIBLE_DOMAIN definido no build (ex.: na Vercel), o script do
 // Plausible entra na página e os eventos de src/lib/analytics.ts passam a ser registrados.
 const plausibleDomain = process.env.PLAUSIBLE_DOMAIN
 

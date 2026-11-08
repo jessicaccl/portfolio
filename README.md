@@ -5,6 +5,8 @@
 
 Este repositório é o meu portfólio e também um case: ele foi construído como um produto, com PRD, user stories, critérios de aceite e qualidade verificada a cada mudança.
 
+**No ar:** [jessica-lima.vercel.app](https://jessica-lima.vercel.app)
+
 ![Topo do portfólio no modo claro](docs/screenshots/01-topo-claro.webp)
 
 ## Telas
@@ -69,10 +71,10 @@ npm run dev
 
 ## Stack
 
-React 19 · TypeScript · Vite · Vitest · Playwright · axe-core · Lighthouse CI · GitHub Actions · Netlify
+React 19 · TypeScript · Vite · Vitest · Playwright · axe-core · Lighthouse CI · GitHub Actions · Vercel
 
 ## Medição de conversão
 
 Os cliques em "Baixar currículo", LinkedIn, GitHub e nos links dos cases geram eventos (`src/lib/analytics.ts`).
 Para registrar, crie o site no [Plausible](https://plausible.io) e defina a variável `PLAUSIBLE_DOMAIN` no build
-(na Netlify: *Site configuration → Environment variables*). Sem ela, nenhum script de terceiros é carregado.
+(na Vercel: *Settings → Environment Variables*). Sem ela, nenhum script de terceiros é carregado.
