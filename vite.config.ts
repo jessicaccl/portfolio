@@ -2,9 +2,15 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 
-// Endereço público do site para a prévia de compartilhamento. A Netlify define URL no build;
+// Endereço público do site para a prévia de compartilhamento. A Netlify define URL e a
+// Vercel define VERCEL_PROJECT_PRODUCTION_URL no build;
 // SITE_URL permite sobrescrever (ex.: domínio próprio). Sem nenhum dos dois, os links ficam relativos.
-const siteUrl = (process.env.SITE_URL ?? process.env.URL ?? '').replace(/\/$/, '')
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+const siteUrl = (
+  process.env.SITE_URL ??
+  process.env.URL ??
+  (vercelUrl ? `https://${vercelUrl}` : '')
+).replace(/\/$/, '')
 
 function siteUrlPlugin(): Plugin {
   return {
